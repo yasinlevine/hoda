@@ -29,16 +29,79 @@ import { EditorialHeroSection } from './components/EditorialHeroSection';
 import { ClinicalDevicesSection } from './components/ClinicalDevicesSection';
 import { ServiceCard } from './components/ServiceCard';
 
+// ---------------------------------------------------------------------------
+// SAFE BROWSER STORAGE UTILITY (Prevents crashing in private browsing/sandboxes)
+// ---------------------------------------------------------------------------
+const safeStorage = {
+  getItem: (key: string, fallback = ''): string => {
+    try {
+      return localStorage.getItem(key) ?? fallback;
+    } catch {
+      return fallback;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      localStorage.setItem(key, value);
+    } catch {
+      // ignore
+    }
+  },
+  getSessionItem: (key: string, fallback = ''): string => {
+    try {
+      return sessionStorage.getItem(key) ?? fallback;
+    } catch {
+      return fallback;
+    }
+  },
+  setSessionItem: (key: string, value: string): void => {
+    try {
+      sessionStorage.setItem(key, value);
+    } catch {
+      // ignore
+    }
+  },
+  removeSessionItem: (key: string): void => {
+    try {
+      sessionStorage.removeItem(key);
+    } catch {
+      // ignore
+    }
+  },
+  getJson: <T,>(key: string, fallback: T): T => {
+    try {
+      const val = localStorage.getItem(key);
+      if (!val) return fallback;
+      return JSON.parse(val) as T;
+    } catch {
+      return fallback;
+    }
+  },
+  setJson: (key: string, value: unknown): void => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+      // ignore
+    }
+  }
+};
+
 export default function App() {
   // ---------------------------------------------------------------------------
   // ROUTING & ADMIN AUTH STATE
   // ---------------------------------------------------------------------------
-  const [currentHash, setCurrentHash] = useState<string>(() => window.location.hash);
+  const [currentHash, setCurrentHash] = useState<string>(() => {
+    try {
+      return window.location.hash;
+    } catch {
+      return '';
+    }
+  });
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
-    return sessionStorage.getItem('orya_admin_auth') === 'true';
+    return safeStorage.getSessionItem('orya_admin_auth') === 'true';
   });
   const [adminPasscode, setAdminPasscode] = useState<string>(() => {
-    return localStorage.getItem('orya_admin_pin') || '1234';
+    return safeStorage.getItem('orya_admin_pin', '1234') || '1234';
   });
   const [enteredPin, setEnteredPin] = useState<string>('');
   const [pinError, setPinError] = useState<string | null>(null);
@@ -46,19 +109,27 @@ export default function App() {
   // Hash router listener (#admin or #manager)
   useEffect(() => {
     const handleHashChange = () => {
-      setCurrentHash(window.location.hash);
+      try {
+        setCurrentHash(window.location.hash);
+      } catch {
+        // ignore
+      }
     };
     window.addEventListener('hashchange', handleHashChange);
 
     // Initialize AOS (Animate on Scroll)
     const initAos = () => {
-      if (typeof (window as any).AOS !== 'undefined') {
-        (window as any).AOS.init({
-          duration: 700,
-          easing: 'ease-out',
-          once: true,
-          offset: 50,
-        });
+      try {
+        if (typeof (window as any).AOS !== 'undefined') {
+          (window as any).AOS.init({
+            duration: 700,
+            easing: 'ease-out',
+            once: true,
+            offset: 50,
+          });
+        }
+      } catch {
+        // ignore
       }
     };
     initAos();
@@ -74,19 +145,23 @@ export default function App() {
 
   // Logout & Exit Admin route
   const handleExitAdmin = () => {
-    sessionStorage.removeItem('orya_admin_auth');
+    safeStorage.removeSessionItem('orya_admin_auth');
     setIsAdminAuthenticated(false);
     setEnteredPin('');
     setPinError(null);
-    window.location.hash = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      window.location.hash = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      // ignore
+    }
   };
 
   // Login handler
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (enteredPin.trim() === adminPasscode.trim()) {
-      sessionStorage.setItem('orya_admin_auth', 'true');
+      safeStorage.setSessionItem('orya_admin_auth', 'true');
       setIsAdminAuthenticated(true);
       setEnteredPin('');
       setPinError(null);
@@ -115,7 +190,7 @@ export default function App() {
       showToast('رمز عبور جدید با تکرار آن مطابقت ندارد.');
       return;
     }
-    localStorage.setItem('orya_admin_pin', newPin);
+    safeStorage.setItem('orya_admin_pin', newPin);
     setAdminPasscode(newPin);
     setOldPin('');
     setNewPin('');
@@ -127,24 +202,20 @@ export default function App() {
   // PORTFOLIO & SCHEDULE DATA STATES (WITH LOCALSTORAGE)
   // ---------------------------------------------------------------------------
   const [bio, setBio] = useState<TherapistBio>(() => {
-    const saved = localStorage.getItem('hoda_bio_v3');
-    return saved ? JSON.parse(saved) : DEFAULT_BIO;
+    return safeStorage.getJson<TherapistBio>('hoda_bio_v3', DEFAULT_BIO);
   });
 
   const [services, setServices] = useState<ServiceItem[]>(() => {
-    const saved = localStorage.getItem('orya_services');
-    return saved ? JSON.parse(saved) : DEFAULT_SERVICES;
+    return safeStorage.getJson<ServiceItem[]>('orya_services', DEFAULT_SERVICES);
   });
 
   // Weekly Schedule Grid State (Replaces Before & After completely)
   const [weeklySchedule, setWeeklySchedule] = useState<WeeklySlot[]>(() => {
-    const saved = localStorage.getItem('hoda_weekly_schedule_v1');
-    return saved ? JSON.parse(saved) : DEFAULT_WEEKLY_SCHEDULE;
+    return safeStorage.getJson<WeeklySlot[]>('hoda_weekly_schedule_v1', DEFAULT_WEEKLY_SCHEDULE);
   });
 
   const [testimonials, setTestimonials] = useState<TestimonialItem[]>(() => {
-    const saved = localStorage.getItem('orya_testimonials');
-    return saved ? JSON.parse(saved) : DEFAULT_TESTIMONIALS;
+    return safeStorage.getJson<TestimonialItem[]>('orya_testimonials', DEFAULT_TESTIMONIALS);
   });
 
   // Toast feedback
@@ -157,19 +228,19 @@ export default function App() {
 
   // Persist to localStorage
   useEffect(() => {
-    localStorage.setItem('hoda_bio_v3', JSON.stringify(bio));
+    safeStorage.setJson('hoda_bio_v3', bio);
   }, [bio]);
 
   useEffect(() => {
-    localStorage.setItem('orya_services', JSON.stringify(services));
+    safeStorage.setJson('orya_services', services);
   }, [services]);
 
   useEffect(() => {
-    localStorage.setItem('hoda_weekly_schedule_v1', JSON.stringify(weeklySchedule));
+    safeStorage.setJson('hoda_weekly_schedule_v1', weeklySchedule);
   }, [weeklySchedule]);
 
   useEffect(() => {
-    localStorage.setItem('orya_testimonials', JSON.stringify(testimonials));
+    safeStorage.setJson('orya_testimonials', testimonials);
   }, [testimonials]);
 
   // Category filter
