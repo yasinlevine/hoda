@@ -2,7 +2,7 @@ import React from 'react';
 import { TherapistBio } from '../types';
 import {
   CalendarCheckIcon,
-  MicrochipIcon,
+  WandSparklesIcon,
   AwardIcon,
   ShieldCheckIcon,
   ZoomInIcon,
@@ -96,11 +96,11 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
             </a>
 
             <a
-              href="#devices"
+              href="#skin-analysis"
               className="min-h-[48px] px-5 py-3.5 bg-[#242922]/90 hover:bg-[#363d33] border border-[#363d33] hover:border-[#a3b18a]/50 text-[#f1f5f9] font-medium text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
             >
-              <MicrochipIcon className="w-4 h-4 text-[#a3b18a]" />
-              <span>تجهیزات کلینیکی</span>
+              <WandSparklesIcon className="w-4 h-4 text-[#a3b18a]" />
+              <span>آنالیز هوشمند پوست</span>
             </a>
           </div>
 
