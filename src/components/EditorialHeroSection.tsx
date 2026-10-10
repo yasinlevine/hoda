@@ -70,7 +70,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10 flex-1 my-auto">
         
         {/* Editorial Headline & Action CTAs */}
-        <div className="lg:col-span-4 text-center lg:text-right space-y-4 sm:space-y-6 order-1 lg:order-1">
+        <div className="lg:col-span-4 text-center lg:text-right space-y-4 sm:space-y-6 order-2 lg:order-1">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#242922]/90 border border-[#a3b18a]/40 text-[11px] sm:text-xs text-[#a3b18a] backdrop-blur-md shadow-sm mx-auto lg:mx-0">
             <span className="w-2 h-2 rounded-full bg-[#a3b18a] animate-pulse"></span>
@@ -89,7 +89,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2">
             <a
               href="#schedule"
-              className="min-h-[48px] px-6 py-3.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-glow-pulse"
+              className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-glow-pulse"
             >
               <CalendarCheckIcon className="w-4 h-4" />
               <span>مشاهده سانس‌های هفتگی</span>
@@ -97,7 +97,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
 
             <a
               href="#skin-analysis"
-              className="min-h-[48px] px-5 py-3.5 bg-[#242922]/90 hover:bg-[#363d33] border border-[#363d33] hover:border-[#a3b18a]/50 text-[#f1f5f9] font-medium text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
+              className="w-full sm:w-auto min-h-[48px] px-5 py-3.5 bg-[#242922]/90 hover:bg-[#363d33] border border-[#363d33] hover:border-[#a3b18a]/50 text-[#f1f5f9] font-medium text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
             >
               <WandSparklesIcon className="w-4 h-4 text-[#a3b18a]" />
               <span>آنالیز هوشمند پوست</span>
@@ -118,13 +118,13 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
         </div>
 
         {/* Central Cutout Portrait of Woman with Headwrap & 3D Slow Float */}
-        <div className="lg:col-span-5 relative flex justify-center items-center order-2 lg:order-2 my-2 sm:my-0">
+        <div className="lg:col-span-5 relative flex justify-center items-center order-1 lg:order-2 my-2 sm:my-0">
           
           {/* Subtle Organic Halo Glow */}
           <div className="absolute inset-0 bg-[#a3b18a]/15 rounded-full blur-3xl scale-95 pointer-events-none"></div>
 
           {/* Central Portrait Architecture with Arch Mask & Subtle Slow Float */}
-          <div className="relative z-10 w-full max-w-[260px] sm:max-w-[340px] lg:max-w-[420px] aspect-[3.2/4] rounded-t-[130px] sm:rounded-t-[170px] lg:rounded-t-[200px] overflow-hidden border-t-2 border-x-2 border-[#a3b18a]/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] group bg-[#1e221b] animate-portrait-float">
+          <div className="relative z-10 w-full max-w-[260px] sm:max-w-[340px] lg:max-w-[420px] aspect-[3.2/4] rounded-t-[130px] sm:rounded-t-[170px] lg:rounded-t-[200px] overflow-hidden border-t-2 border-x-2 border-[#a3b18a]/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] group bg-[#1e221b] animate-portrait-float mx-auto">
             <img
               src={heroThumbnails[activeThumbnail].img}
               alt={heroThumbnails[activeThumbnail].title}

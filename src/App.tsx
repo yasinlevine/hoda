@@ -1582,7 +1582,7 @@ export default function App() {
           </div>
 
           {/* Zone 2: Center Botanical Geometric Emblem & Brand Name */}
-          <a href="#top" className="flex items-center gap-2 sm:gap-2.5 group" aria-label="Home">
+          <a href="#top" className="flex items-center gap-2 sm:gap-2.5 group absolute lg:static left-1/2 -translate-x-1/2 lg:translate-x-0 z-10" aria-label="Home">
             <svg
               className="w-7 h-7 sm:w-8 sm:h-8 text-[#a3b18a] group-hover:rotate-45 transition-transform duration-700 animate-emblem-spin"
               viewBox="0 0 100 100"
