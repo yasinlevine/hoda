@@ -7,7 +7,10 @@ import {
   SunIcon,
   ShieldCheckIcon,
   InstagramIcon,
-  CheckIcon
+  CheckIcon,
+  DropletIcon,
+  SpaIcon,
+  MicrochipIcon
 } from './Icons';
 
 interface ClinicalDevicesSectionProps {
@@ -20,15 +23,15 @@ export const ClinicalDevicesSection: React.FC<ClinicalDevicesSectionProps> = ({
   const renderDeviceIcon = (id: string) => {
     switch (id) {
       case 'aquapeel-vortex':
-        return <WandSparklesIcon className="w-6 h-6" />;
+        return <DropletIcon className="w-6 h-6 m-auto" />;
       case 'carboxy-bohr':
-        return <AtomIcon className="w-6 h-6" />;
+        return <SpaIcon className="w-6 h-6 m-auto" />;
       case 'ultrasound-nano':
-        return <WaveIcon className="w-6 h-6" />;
+        return <MicrochipIcon className="w-6 h-6 m-auto" />;
       case 'led-phototherapy':
-        return <SunIcon className="w-6 h-6" />;
+        return <SunIcon className="w-6 h-6 m-auto" />;
       default:
-        return <WandSparklesIcon className="w-6 h-6" />;
+        return <DropletIcon className="w-6 h-6 m-auto" />;
     }
   };
 
@@ -71,12 +74,12 @@ export const ClinicalDevicesSection: React.FC<ClinicalDevicesSectionProps> = ({
               <div>
                 {/* Icon & Category Badge */}
                 <div className="flex items-center justify-between mb-4 sm:mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-[#242922] border border-[#a3b18a]/40 text-[#a3b18a] flex items-center justify-center group-hover:bg-[#a3b18a] group-hover:text-[#1e221b] transition-all duration-300 shadow-inner group-hover:scale-110">
-                    {renderDeviceIcon(device.id)}
-                  </div>
                   <span className="text-[11px] font-medium text-[#a3b18a] bg-[#a3b18a]/10 border border-[#a3b18a]/30 px-3 py-1 rounded-full">
                     {device.badge}
                   </span>
+                  <div className="w-12 h-12 rounded-xl bg-[#242922] border border-[#a3b18a]/40 text-[#a3b18a] flex items-center justify-center group-hover:bg-[#a3b18a] group-hover:text-[#1e221b] transition-all duration-300 shadow-inner group-hover:scale-110 shrink-0">
+                    {renderDeviceIcon(device.id)}
+                  </div>
                 </div>
 
                 {/* Device Title & En Name */}

@@ -1568,10 +1568,16 @@ export default function App() {
           <div className="flex lg:hidden items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-[#242922] border border-[#363d33] text-gray-300 hover:text-white flex items-center justify-center cursor-pointer transition-colors active:scale-95"
+              className="min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-[#242922] border border-[#363d33] text-[#a3b18a] hover:text-white flex items-center justify-center cursor-pointer transition-all active:scale-95 shadow-sm"
               aria-label="Toggle navigation menu"
             >
-              <i className={`fa-solid ${isMobileMenuOpen ? 'fa-xmark' : 'fa-bars'} text-sm text-[#a3b18a]`}></i>
+              {isMobileMenuOpen ? (
+                <i className="fa-solid fa-xmark text-base text-[#a3b18a]"></i>
+              ) : (
+                <svg className="w-5 h-5 text-[#a3b18a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
 
@@ -1608,7 +1614,7 @@ export default function App() {
               onClick={() => handleOpenInstagramBooking()}
               className="min-h-[44px] px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-xs rounded-full transition-all duration-300 shadow-md flex items-center gap-1.5 sm:gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-luxury-shimmer"
             >
-              <i className="fa-brands fa-instagram text-xs sm:text-sm"></i>
+              <i className="fa-solid fa-calendar-plus text-xs sm:text-sm animate-pulse"></i>
               <span className="hidden sm:inline">نوبت‌دهی دایرکت</span>
               <span className="sm:hidden text-[11px]">رزرو نوبت</span>
             </button>
@@ -1618,7 +1624,7 @@ export default function App() {
 
         {/* Mobile Dropdown Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-3 pt-3 border-t border-[#363d33] space-y-2 animate-fade-in text-right">
+          <div className="lg:hidden mt-3 pt-3 border-t border-[#363d33] space-y-2.5 animate-mobile-menu text-right bg-[#1e221b]/95 p-3 rounded-2xl border border-[#363d33]/80 shadow-2xl backdrop-blur-xl">
             <a
               href="#bio"
               onClick={() => setIsMobileMenuOpen(false)}
