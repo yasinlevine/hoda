@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import { WeeklySlot, INSTAGRAM_URL, INSTAGRAM_DIRECT_URL, INSTAGRAM_HANDLE } from '../types';
+import {
+  XIcon,
+  InstagramIcon,
+  CalendarIcon,
+  ClockIcon,
+  CompassIcon,
+  CopyIcon
+} from './Icons';
 
 interface SlotBookingModalProps {
   slot: WeeklySlot;
@@ -42,13 +50,13 @@ export const SlotBookingModal: React.FC<SlotBookingModalProps> = ({
           className="absolute top-5 left-5 w-8 h-8 rounded-full bg-[#1e221b] border border-[#363d33] text-gray-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
           aria-label="Close"
         >
-          <i className="fa-solid fa-xmark text-sm"></i>
+          <XIcon className="w-4 h-4" />
         </button>
 
         {/* Header */}
         <div className="flex items-center gap-3.5 pb-4 border-b border-[#363d33]">
           <div className="w-12 h-12 rounded-2xl bg-[#1e221b] border border-[#a3b18a]/40 text-[#a3b18a] flex items-center justify-center text-xl shrink-0 shadow-inner">
-            <i className="fa-brands fa-instagram"></i>
+            <InstagramIcon className="w-6 h-6" />
           </div>
           <div>
             <span className="text-[10px] font-mono text-[#a3b18a] uppercase tracking-wider block">
@@ -65,14 +73,14 @@ export const SlotBookingModal: React.FC<SlotBookingModalProps> = ({
           <div>
             <span className="text-gray-400 block text-[11px] mb-1">روز انتخابی:</span>
             <span className="text-[#f1f5f9] font-bold text-sm flex items-center gap-1.5">
-              <i className="fa-regular fa-calendar text-[#a3b18a] text-xs"></i>
+              <CalendarIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
               {slot.dayName} ({slot.dayEn})
             </span>
           </div>
           <div>
             <span className="text-gray-400 block text-[11px] mb-1">سانس و زمان:</span>
             <span className="text-[#a3b18a] font-mono font-bold text-xs flex items-center gap-1.5">
-              <i className="fa-regular fa-clock text-xs"></i>
+              <ClockIcon className="w-3.5 h-3.5" />
               {slot.shiftName} · {slot.shiftTime}
             </span>
           </div>
@@ -127,7 +135,7 @@ export const SlotBookingModal: React.FC<SlotBookingModalProps> = ({
             onClick={handleCopyAndRedirect}
             className="w-full min-h-[48px] py-3.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-sm rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-98"
           >
-            <i className="fa-brands fa-instagram text-base"></i>
+            <InstagramIcon className="w-5 h-5" />
             <span>
               {copied ? 'متن کپی شد · ورود به دایرکت اینستاگرام' : 'کپی پیام و رزرو در دایرکت اینستاگرام'}
             </span>
@@ -140,7 +148,7 @@ export const SlotBookingModal: React.FC<SlotBookingModalProps> = ({
               rel="noopener noreferrer"
               className="py-2.5 bg-[#1e221b] hover:bg-[#363d33] border border-[#363d33] text-gray-300 hover:text-white rounded-xl text-center transition-colors cursor-pointer flex items-center justify-center gap-1.5"
             >
-              <i className="fa-regular fa-compass text-xs text-[#a3b18a]"></i>
+              <CompassIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
               <span>مشاهده پیج</span>
             </a>
 
@@ -148,7 +156,7 @@ export const SlotBookingModal: React.FC<SlotBookingModalProps> = ({
               onClick={handleCopyHandle}
               className="py-2.5 bg-[#1e221b] hover:bg-[#363d33] border border-[#363d33] text-gray-300 hover:text-white rounded-xl text-center transition-colors cursor-pointer flex items-center justify-center gap-1.5"
             >
-              <i className="fa-regular fa-copy text-xs text-[#a3b18a]"></i>
+              <CopyIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
               <span className="font-mono text-[11px]">{INSTAGRAM_HANDLE}</span>
             </button>
           </div>

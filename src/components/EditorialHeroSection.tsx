@@ -1,5 +1,14 @@
 import React from 'react';
 import { TherapistBio } from '../types';
+import {
+  CalendarCheckIcon,
+  MicrochipIcon,
+  AwardIcon,
+  ShieldCheckIcon,
+  ZoomInIcon,
+  SeedlingIcon,
+  HistoryIcon
+} from './Icons';
 
 interface EditorialHeroSectionProps {
   bio: TherapistBio;
@@ -82,7 +91,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
               href="#schedule"
               className="min-h-[48px] px-6 py-3.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-glow-pulse"
             >
-              <i className="fa-solid fa-calendar-check text-sm"></i>
+              <CalendarCheckIcon className="w-4 h-4" />
               <span>مشاهده سانس‌های هفتگی</span>
             </a>
 
@@ -90,7 +99,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
               href="#devices"
               className="min-h-[48px] px-5 py-3.5 bg-[#242922]/90 hover:bg-[#363d33] border border-[#363d33] hover:border-[#a3b18a]/50 text-[#f1f5f9] font-medium text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm hover:scale-105 active:scale-95"
             >
-              <i className="fa-solid fa-microchip text-xs text-[#a3b18a]"></i>
+              <MicrochipIcon className="w-4 h-4 text-[#a3b18a]" />
               <span>تجهیزات کلینیکی</span>
             </a>
           </div>
@@ -98,11 +107,11 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           {/* Mobile Trust Badges Pills */}
           <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-4 text-[11px] text-gray-400">
             <span className="flex items-center gap-1.5 bg-[#242922]/60 px-3 py-1.5 rounded-full border border-[#363d33] hover:border-[#a3b18a]/40 transition-colors">
-              <i className="fa-solid fa-award text-[#a3b18a]"></i>
+              <AwardIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
               بورد CIDESCO سوئیس
             </span>
             <span className="flex items-center gap-1.5 bg-[#242922]/60 px-3 py-1.5 rounded-full border border-[#363d33] hover:border-[#a3b18a]/40 transition-colors">
-              <i className="fa-solid fa-shield-halved text-[#a3b18a]"></i>
+              <ShieldCheckIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
               محیط استریل VIP
             </span>
           </div>
@@ -142,7 +151,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
                 title="مشاهده بزرگنمایی"
                 aria-label="Zoom"
               >
-                <i className="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <ZoomInIcon className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -153,7 +162,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           <div className="bg-[#242922]/80 border border-[#363d33] p-4 rounded-2xl backdrop-blur-md hover:border-[#a3b18a]/40 transition-colors">
             <div className="flex items-center gap-2.5 mb-1.5">
               <span className="w-6 h-6 rounded-lg bg-[#1e221b] text-[#a3b18a] flex items-center justify-center text-xs">
-                <i className="fa-solid fa-award"></i>
+                <AwardIcon className="w-3.5 h-3.5" />
               </span>
               <h4 className="text-xs font-bold text-[#f1f5f9]">بورد CIDESCO سوئیس</h4>
             </div>
@@ -165,7 +174,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           <div className="bg-[#242922]/80 border border-[#363d33] p-4 rounded-2xl backdrop-blur-md hover:border-[#a3b18a]/40 transition-colors">
             <div className="flex items-center gap-2.5 mb-1.5">
               <span className="w-6 h-6 rounded-lg bg-[#1e221b] text-[#a3b18a] flex items-center justify-center text-xs">
-                <i className="fa-solid fa-seedling"></i>
+                <SeedlingIcon className="w-3.5 h-3.5" />
               </span>
               <h4 className="text-xs font-bold text-[#f1f5f9]">فرمولاسیون بیومیمتیک</h4>
             </div>
@@ -177,7 +186,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           <div className="bg-[#242922]/80 border border-[#363d33] p-4 rounded-2xl backdrop-blur-md hover:border-[#a3b18a]/40 transition-colors">
             <div className="flex items-center gap-2.5 mb-1.5">
               <span className="w-6 h-6 rounded-lg bg-[#1e221b] text-[#a3b18a] flex items-center justify-center text-xs">
-                <i className="fa-solid fa-clock-rotate-left"></i>
+                <HistoryIcon className="w-3.5 h-3.5" />
               </span>
               <h4 className="text-xs font-bold text-[#f1f5f9]">نوبت‌دهی اختصاصی</h4>
             </div>

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ServiceItem } from '../types';
+import { ClockIcon, ArrowLeftIcon, InstagramIcon } from './Icons';
 
 interface ServiceCardProps {
   service: ServiceItem;
@@ -80,9 +81,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             {service.categoryLabel}
           </div>
 
-          <div className="absolute bottom-3 left-4 text-xs font-mono text-gray-300">
-            <i className="fa-regular fa-clock ml-1 text-[#a3b18a]"></i>
-            {service.duration}
+          <div className="absolute bottom-3 left-4 text-xs font-mono text-gray-300 flex items-center gap-1.5">
+            <ClockIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
+            <span>{service.duration}</span>
           </div>
         </div>
 
@@ -128,14 +129,14 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
           className="min-h-[44px] px-2 text-xs text-[#a3b18a] hover:text-white font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
         >
           <span>جزئیات پروتکل</span>
-          <i className="fa-solid fa-arrow-left text-[10px]"></i>
+          <ArrowLeftIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
         </button>
 
         <button
           onClick={() => onOpenInstagramBooking(service.title)}
           className="min-h-[44px] px-4 py-2.5 text-xs font-semibold text-[#1e221b] bg-[#a3b18a] hover:bg-[#b5c49b] rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-md active:scale-98"
         >
-          <i className="fa-brands fa-instagram text-xs"></i>
+          <InstagramIcon className="w-3.5 h-3.5" />
           <span>رزرو در دایرکت</span>
         </button>
       </div>

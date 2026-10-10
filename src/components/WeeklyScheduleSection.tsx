@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
 import { WeeklySlot, WEEK_DAYS, SHIFTS_CONFIG, DayKey } from '../types';
+import {
+  RepeatIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
+  SunIcon,
+  CloudSunIcon,
+  MoonIcon,
+  InstagramIcon,
+  LockIcon,
+  LocationIcon,
+  HistoryIcon
+} from './Icons';
 
 interface WeeklyScheduleSectionProps {
   schedule: WeeklySlot[];
@@ -10,6 +22,18 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
   schedule,
   onSelectSlot
 }) => {
+  const renderShiftIcon = (key: string, className = 'w-4 h-4') => {
+    switch (key) {
+      case 'morning':
+        return <SunIcon className={className} />;
+      case 'afternoon':
+        return <CloudSunIcon className={className} />;
+      case 'evening':
+        return <MoonIcon className={className} />;
+      default:
+        return <SunIcon className={className} />;
+    }
+  };
   // Active day selection for mobile single-column card view (defaults to Saturday)
   const [activeMobileDayKey, setActiveMobileDayKey] = useState<DayKey>('sat');
   
@@ -90,10 +114,10 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
             <div className="flex items-center gap-1.5 text-[11px]">
               <button
                 onClick={() => setMobileViewMode(mobileViewMode === 'single-day' ? 'all-days' : 'single-day')}
-                className="text-[#a3b18a] hover:underline flex items-center gap-1 cursor-pointer"
+                className="text-[#a3b18a] hover:underline flex items-center gap-1.5 cursor-pointer"
               >
                 <span>{mobileViewMode === 'single-day' ? 'نمایش کل روزها' : 'نمایش روزانه'}</span>
-                <i className="fa-solid fa-repeat text-[10px]"></i>
+                <RepeatIcon className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
@@ -138,7 +162,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                 className="w-9 h-9 rounded-full bg-[#1e221b] border border-[#363d33] text-gray-300 hover:text-white flex items-center justify-center cursor-pointer active:scale-95 transition-transform"
                 aria-label="Previous day"
               >
-                <i className="fa-solid fa-chevron-right text-xs"></i>
+                <ChevronRightIcon className="w-4 h-4" />
               </button>
 
               <div className="text-center">
@@ -162,7 +186,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                 className="w-9 h-9 rounded-full bg-[#1e221b] border border-[#363d33] text-gray-300 hover:text-white flex items-center justify-center cursor-pointer active:scale-95 transition-transform"
                 aria-label="Next day"
               >
-                <i className="fa-solid fa-chevron-left text-xs"></i>
+                <ChevronLeftIcon className="w-4 h-4" />
               </button>
             </div>
 
@@ -186,8 +210,8 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2.5">
-                          <span className="w-8 h-8 rounded-xl bg-[#242922] text-[#a3b18a] flex items-center justify-center text-sm border border-[#363d33] group-hover:scale-105 transition-transform">
-                            <i className={`fa-solid ${shiftConf.icon}`}></i>
+                          <span className="w-8 h-8 rounded-xl bg-[#242922] text-[#a3b18a] flex items-center justify-center border border-[#363d33] group-hover:scale-105 transition-transform">
+                            {renderShiftIcon(shiftConf.key, 'w-4 h-4')}
                           </span>
                           <div>
                             <span className="font-bold text-[#f1f5f9] text-sm block">
@@ -210,7 +234,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                         type="button"
                         className="w-full min-h-[48px] bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-sm rounded-xl transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02] active:scale-95"
                       >
-                        <i className="fa-brands fa-instagram text-sm"></i>
+                        <InstagramIcon className="w-4 h-4" />
                         <span>رزرو این سانس در دایرکت اینستاگرام</span>
                       </button>
                     </div>
@@ -224,8 +248,8 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                     className="bg-[#1a1e17]/80 border border-[#363d33]/50 p-4 rounded-2xl opacity-65 flex items-center justify-between select-none"
                   >
                     <div className="flex items-center gap-2.5">
-                      <span className="w-8 h-8 rounded-xl bg-[#171a15] text-gray-500 flex items-center justify-center text-sm border border-[#2b3127]">
-                        <i className={`fa-solid ${shiftConf.icon}`}></i>
+                      <span className="w-8 h-8 rounded-xl bg-[#171a15] text-gray-500 flex items-center justify-center border border-[#2b3127]">
+                        {renderShiftIcon(shiftConf.key, 'w-4 h-4 text-gray-500')}
                       </span>
                       <div>
                         <span className="font-medium text-gray-400 text-sm block">
@@ -238,7 +262,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                     </div>
 
                     <div className="flex items-center gap-1.5 text-gray-500 bg-[#171a15] px-3 py-1.5 rounded-xl border border-[#2b3127] text-xs">
-                      <i className="fa-solid fa-lock text-[10px]"></i>
+                      <LockIcon className="w-3.5 h-3.5 text-gray-500" />
                       <span>تکمیل شده</span>
                     </div>
                   </div>
@@ -247,9 +271,9 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
             </div>
 
             {/* Bottom Clinic Notice */}
-            <div className="pt-3 border-t border-[#363d33]/50 text-center text-[11px] text-gray-400">
-              <i className="fa-solid fa-location-dot text-[#a3b18a] ml-1"></i>
-              تهران، زعفرانیه (VIP) · محیط ایزوله و اختصاصی
+            <div className="pt-3 border-t border-[#363d33]/50 text-center text-[11px] text-gray-400 flex items-center justify-center gap-1">
+              <LocationIcon className="w-3.5 h-3.5 text-[#a3b18a]" />
+              <span>تهران، زعفرانیه (VIP) · محیط ایزوله و اختصاصی</span>
             </div>
           </div>
         )}
@@ -309,7 +333,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                             <span className="text-xs text-gray-400 block">{shiftConf.name}</span>
                             <span className="text-[10px] font-mono text-gray-600">{shiftConf.timeRange}</span>
                           </div>
-                          <i className="fa-solid fa-lock text-[10px] text-gray-600"></i>
+                          <LockIcon className="w-3.5 h-3.5 text-gray-600" />
                         </div>
                       );
                     })}
@@ -415,7 +439,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                         >
                           <div className="flex items-center justify-between text-xs mb-1.5">
                             <span className="font-bold text-[#f1f5f9] group-hover:text-[#a3b18a] transition-colors flex items-center gap-1.5">
-                              <i className={`fa-solid ${shiftConf.icon} text-[11px] text-[#a3b18a] group-hover:scale-110 transition-transform`}></i>
+                              {renderShiftIcon(shiftConf.key, 'w-3.5 h-3.5 text-[#a3b18a] group-hover:scale-110 transition-transform')}
                               {shiftConf.name}
                             </span>
                             <span className="w-2 h-2 rounded-full bg-[#a3b18a] animate-pulse"></span>
@@ -427,7 +451,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
 
                           {/* Attractive Interactive Badge */}
                           <div className="bg-[#a3b18a]/15 group-hover:bg-[#a3b18a] group-hover:text-[#1e221b] text-[#a3b18a] border border-[#a3b18a]/50 py-1.5 px-2 rounded-lg text-[10px] font-bold text-center transition-all duration-200 flex items-center justify-center gap-1.5 group-hover:shadow-md">
-                            <i className="fa-brands fa-instagram text-[11px]"></i>
+                            <InstagramIcon className="w-3.5 h-3.5" />
                             <span>زمان باز / رزرو دایرکت</span>
                           </div>
                         </div>
@@ -442,10 +466,10 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
                       >
                         <div className="flex items-center justify-between text-xs mb-1.5">
                           <span className="font-medium text-gray-400 flex items-center gap-1.5">
-                            <i className={`fa-solid ${shiftConf.icon} text-[10px] text-gray-600`}></i>
+                            {renderShiftIcon(shiftConf.key, 'w-3 h-3 text-gray-600')}
                             {shiftConf.name}
                           </span>
-                          <i className="fa-solid fa-lock text-[10px] text-gray-600"></i>
+                          <LockIcon className="w-3.5 h-3.5 text-gray-600" />
                         </div>
 
                         <div className="text-[11px] font-mono text-gray-600 mb-2">
@@ -475,7 +499,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
       <div className="mt-8 sm:mt-12 bg-gradient-to-r from-[#242922] via-[#2d3429] to-[#242922] border border-[#a3b18a]/30 rounded-3xl p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 shadow-xl text-center sm:text-right">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div className="w-12 h-12 rounded-2xl bg-[#1e221b] border border-[#a3b18a]/40 text-[#a3b18a] flex items-center justify-center text-xl shrink-0">
-            <i className="fa-solid fa-clock-rotate-left"></i>
+            <HistoryIcon className="w-6 h-6" />
           </div>
           <div>
             <h4 className="text-sm sm:text-base font-bold text-[#f1f5f9]">
@@ -493,7 +517,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
           rel="noopener noreferrer"
           className="min-h-[48px] px-6 py-3 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs rounded-xl transition-all shadow-md shrink-0 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
         >
-          <i className="fa-brands fa-instagram text-sm"></i>
+          <InstagramIcon className="w-4 h-4" />
           <span>استعلام در دایرکت اینستاگرام</span>
         </a>
       </div>

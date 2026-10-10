@@ -28,6 +28,7 @@ import { SlotBookingModal } from './components/SlotBookingModal';
 import { EditorialHeroSection } from './components/EditorialHeroSection';
 import { ClinicalDevicesSection } from './components/ClinicalDevicesSection';
 import { ServiceCard } from './components/ServiceCard';
+import { SkinAnalysisSection } from './components/SkinAnalysisSection';
 
 // ---------------------------------------------------------------------------
 // SAFE BROWSER STORAGE UTILITY (Prevents crashing in private browsing/sandboxes)
@@ -259,8 +260,10 @@ export default function App() {
   const [inquiredItemTitle, setInquiredItemTitle] = useState<string>('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  // Admin Dashboard Active Tab
+  // Admin Dashboard Active Tab & Drawer Menu
   const [adminTab, setAdminTab] = useState<'services' | 'schedule' | 'reviews' | 'bio' | 'security'>('services');
+  const [isAdminDrawerOpen, setIsAdminDrawerOpen] = useState<boolean>(false);
+  const [serviceSearchQuery, setServiceSearchQuery] = useState<string>('');
 
   // Editing items in Admin
   const [editingService, setEditingService] = useState<ServiceItem | null>(null);
@@ -541,26 +544,48 @@ export default function App() {
           </div>
         )}
 
-        {/* Admin Navigation Bar */}
-        <header className="sticky top-0 z-40 bg-[#1e221b]/95 backdrop-blur-md border-b border-[#363d33] px-6 sm:px-12 py-4 flex items-center justify-between">
+        {/* Admin Navigation Bar with Creative Hamburger Button */}
+        <header className="sticky top-0 z-40 bg-[#1e221b]/95 backdrop-blur-md border-b border-[#363d33] px-4 sm:px-8 lg:px-12 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="w-8 h-8 rounded-full bg-[#242922] border border-[#a3b18a]/40 text-[#a3b18a] flex items-center justify-center text-xs">
+            {/* Creative Animated Hamburger Button */}
+            <button
+              onClick={() => setIsAdminDrawerOpen(!isAdminDrawerOpen)}
+              className="p-2.5 rounded-xl bg-[#242922] hover:bg-[#2d332a] border border-[#a3b18a]/40 text-[#a3b18a] hover:text-white flex items-center gap-2 cursor-pointer transition-all duration-300 active:scale-95 group shadow-sm"
+              aria-label="منوی همبرگری مدیریت"
+              title="منوی همبرگری مدیریت"
+            >
+              <div className="w-5 h-4 flex flex-col justify-between items-center relative">
+                <span className={`h-0.5 w-full bg-current rounded-full transition-all duration-300 origin-right ${isAdminDrawerOpen ? '-rotate-45 translate-x-0.5' : ''}`}></span>
+                <span className={`h-0.5 w-full bg-current rounded-full transition-all duration-300 ${isAdminDrawerOpen ? 'opacity-0 translate-x-2' : ''}`}></span>
+                <span className={`h-0.5 w-full bg-current rounded-full transition-all duration-300 origin-right ${isAdminDrawerOpen ? 'rotate-45 translate-x-0.5' : ''}`}></span>
+              </div>
+              <span className="hidden sm:inline text-xs font-semibold">منو</span>
+            </button>
+
+            <span className="w-9 h-9 rounded-full bg-[#242922] border border-[#a3b18a]/40 text-[#a3b18a] flex items-center justify-center text-sm shadow-inner">
               <i className="fa-solid fa-sliders"></i>
             </span>
             <div>
-              <h2 className="text-sm sm:text-base font-bold text-[#f1f5f9]">
-                پنل مدیریت پورتفولیو · {bio.name}
-              </h2>
-              <span className="text-[10px] text-[#a3b18a] font-mono">
-                ADMIN CONSOLE ({currentHash})
+              <div className="flex items-center gap-2">
+                <h2 className="text-sm sm:text-base font-bold text-[#f1f5f9]">
+                  پنل مدیریت پورتفولیو · {bio.name}
+                </h2>
+                <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-500/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>آنلاین</span>
+                </span>
+              </div>
+              <span className="text-[10px] text-[#a3b18a] font-mono block">
+                ADMIN CONSOLE ({currentHash || '#admin'})
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={handleResetToDefaults}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs text-red-300 border border-red-500/30 rounded-lg hover:bg-red-500/10 transition-colors cursor-pointer"
+              className="hidden md:flex items-center gap-1.5 px-3 py-2 text-xs text-red-300 bg-[#242922] border border-red-500/30 rounded-xl hover:bg-red-500/10 transition-colors cursor-pointer"
+              title="بازنشانی اطلاعات به حالت پیش‌فرض"
             >
               <i className="fa-solid fa-rotate-left text-[10px]"></i>
               <span>بازنشانی پیش‌فرض</span>
@@ -568,44 +593,304 @@ export default function App() {
 
             <button
               onClick={handleExitAdmin}
-              className="flex items-center gap-2 px-4 py-2 bg-[#242922] hover:bg-[#363d33] text-gray-300 hover:text-white border border-[#363d33] rounded-lg text-xs transition-colors cursor-pointer"
+              className="flex items-center gap-2 px-3.5 sm:px-4 py-2 bg-[#242922] hover:bg-[#363d33] text-gray-300 hover:text-white border border-[#363d33] hover:border-[#a3b18a]/40 rounded-xl text-xs transition-colors cursor-pointer shadow-sm active:scale-95"
             >
               <i className="fa-solid fa-right-from-bracket text-xs text-[#a3b18a]"></i>
-              <span>خروج و بازگشت به سایت</span>
+              <span className="hidden sm:inline">خروج و بازگشت به سایت</span>
+              <span className="sm:hidden">خروج</span>
             </button>
           </div>
         </header>
 
-        {/* Admin Tabs */}
-        <div className="bg-[#242922] border-b border-[#363d33] px-6 sm:px-12 flex overflow-x-auto no-scrollbar text-xs">
-          {[
-            { id: 'services', label: `منوی خدمات و پکیج‌ها (${services.length})` },
-            { id: 'schedule', label: `برنامه و سانس‌های هفتگی (${weeklySchedule.filter(s => s.status === 'available').length} باز)` },
-            { id: 'reviews', label: `نظرات مراجعین (${testimonials.length})` },
-            { id: 'bio', label: 'اطلاعات متخصص و مدارک' },
-            { id: 'security', label: 'تنظیمات رمز عبور' }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => {
-                setAdminTab(tab.id as any);
-                setEditingService(null);
-                setEditingReview(null);
-              }}
-              className={`py-3.5 px-5 font-semibold border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
-                adminTab === tab.id
-                  ? 'border-[#a3b18a] text-[#a3b18a]'
-                  : 'border-transparent text-gray-400 hover:text-white'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        {/* CREATIVE SLIDING DRAWER MENU (منوی همبرگری جذاب مدیریت) */}
+        {isAdminDrawerOpen && (
+          <div className="fixed inset-0 z-50 flex justify-end">
+            {/* Backdrop */}
+            <div
+              onClick={() => setIsAdminDrawerOpen(false)}
+              className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity animate-fade-in"
+            ></div>
+
+            {/* Sliding Drawer Panel */}
+            <div className="relative z-10 w-full max-w-sm sm:max-w-md bg-[#1e221b] border-r border-[#363d33] shadow-2xl flex flex-col h-full animate-slide-left">
+              {/* Drawer Header */}
+              <div className="p-6 bg-[#242922] border-b border-[#363d33] flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-2xl bg-[#1e221b] border border-[#a3b18a]/50 text-[#a3b18a] flex items-center justify-center text-lg shadow-md">
+                    <i className="fa-solid fa-leaf"></i>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#f1f5f9]">{bio.name}</h3>
+                    <p className="text-[11px] text-[#a3b18a]">پنل مدیریت و تنظیمات کلینیک</p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setIsAdminDrawerOpen(false)}
+                  className="w-9 h-9 rounded-xl bg-[#1e221b] border border-[#363d33] text-gray-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="بستن منو"
+                >
+                  <i className="fa-solid fa-xmark text-sm"></i>
+                </button>
+              </div>
+
+              {/* Drawer Menu Items */}
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2.5 text-right">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 px-2 block mb-2">
+                  بخش‌های مدیریتی
+                </span>
+
+                {[
+                  {
+                    id: 'services',
+                    title: 'منوی خدمات و پکیج‌ها',
+                    desc: 'درمان‌های تخصصی و پکیج‌های فیشال',
+                    badge: `${services.length} خدمت`,
+                    icon: 'fa-solid fa-spa',
+                    color: 'text-[#a3b18a]'
+                  },
+                  {
+                    id: 'schedule',
+                    title: 'برنامه و سانس‌های هفتگی',
+                    desc: '۲۱ سانس هفتگی نوبت‌دهی زعفرانیه',
+                    badge: `${weeklySchedule.filter(s => s.status === 'available').length} سانس باز`,
+                    icon: 'fa-solid fa-calendar-check',
+                    color: 'text-emerald-400'
+                  },
+                  {
+                    id: 'reviews',
+                    title: 'نظرات و فیدبک مراجعین',
+                    desc: 'دیدگاه‌ها و امتیازهای ثبت‌شده',
+                    badge: `${testimonials.length} نظر`,
+                    icon: 'fa-solid fa-star',
+                    color: 'text-amber-400'
+                  },
+                  {
+                    id: 'bio',
+                    title: 'اطلاعات متخصص و مدارک',
+                    desc: 'بیوگرافی، مدارک CIDESCO و لوکیشن',
+                    badge: 'زعفرانیه',
+                    icon: 'fa-solid fa-graduation-cap',
+                    color: 'text-sky-400'
+                  },
+                  {
+                    id: 'security',
+                    title: 'امنیت و تنظیمات رمز عبور',
+                    desc: 'تغییر پین‌کد ۴ رقمی ورود به پنل',
+                    badge: 'فعال',
+                    icon: 'fa-solid fa-shield-halved',
+                    color: 'text-purple-400'
+                  }
+                ].map(item => {
+                  const isActive = adminTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setAdminTab(item.id as any);
+                        setEditingService(null);
+                        setEditingReview(null);
+                        setIsAdminDrawerOpen(false);
+                      }}
+                      className={`w-full p-3.5 rounded-2xl border transition-all duration-200 flex items-center justify-between text-right cursor-pointer ${
+                        isActive
+                          ? 'bg-[#242922] border-[#a3b18a] shadow-lg shadow-[#a3b18a]/5'
+                          : 'bg-[#1e221b] hover:bg-[#242922] border-[#363d33] hover:border-[#a3b18a]/30'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className={`w-9 h-9 rounded-xl bg-[#1e221b] border border-[#363d33] flex items-center justify-center text-sm ${item.color}`}>
+                          <i className={item.icon}></i>
+                        </span>
+                        <div>
+                          <h4 className={`text-xs font-bold ${isActive ? 'text-[#a3b18a]' : 'text-[#f1f5f9]'}`}>
+                            {item.title}
+                          </h4>
+                          <p className="text-[10px] text-gray-400 mt-0.5">{item.desc}</p>
+                        </div>
+                      </div>
+
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full border ${
+                        isActive
+                          ? 'bg-[#a3b18a]/20 border-[#a3b18a]/50 text-[#a3b18a]'
+                          : 'bg-[#242922] border-[#363d33] text-gray-400'
+                      }`}>
+                        {item.badge}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Drawer Footer Actions */}
+              <div className="p-4 sm:p-6 bg-[#242922] border-t border-[#363d33] space-y-2">
+                <button
+                  onClick={() => {
+                    setIsAdminDrawerOpen(false);
+                    handleExitAdmin();
+                  }}
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                >
+                  <i className="fa-solid fa-eye text-xs"></i>
+                  <span>مشاهده و بازگشت به وب‌سایت</span>
+                </button>
+
+                <div className="flex items-center gap-2 pt-1">
+                  <button
+                    onClick={handleResetToDefaults}
+                    className="flex-1 py-2 px-3 rounded-lg bg-[#1e221b] border border-red-500/20 text-red-300 hover:bg-red-500/10 text-[11px] transition-colors cursor-pointer text-center"
+                  >
+                    بازنشانی پیش‌فرض
+                  </button>
+
+                  <button
+                    onClick={handleExitAdmin}
+                    className="flex-1 py-2 px-3 rounded-lg bg-[#1e221b] border border-[#363d33] text-gray-300 hover:text-white text-[11px] transition-colors cursor-pointer text-center"
+                  >
+                    خروج از پنل
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Quick Horizontal Tab Bar for Fast Navigation */}
+        <div className="bg-[#242922] border-b border-[#363d33] px-4 sm:px-8 lg:px-12 flex items-center justify-between overflow-x-auto no-scrollbar text-xs">
+          <div className="flex items-center gap-1 sm:gap-2">
+            {[
+              { id: 'services', label: 'خدمات و پکیج‌ها', icon: 'fa-solid fa-spa', count: services.length },
+              { id: 'schedule', label: 'برنامه سانس‌ها', icon: 'fa-solid fa-calendar-check', count: weeklySchedule.filter(s => s.status === 'available').length },
+              { id: 'reviews', label: 'نظرات مراجعین', icon: 'fa-solid fa-star', count: testimonials.length },
+              { id: 'bio', label: 'اطلاعات متخصص', icon: 'fa-solid fa-graduation-cap' },
+              { id: 'security', label: 'امنیت و رمز', icon: 'fa-solid fa-shield-halved' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  setAdminTab(tab.id as any);
+                  setEditingService(null);
+                  setEditingReview(null);
+                }}
+                className={`py-3.5 px-3 sm:px-4 font-semibold border-b-2 transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                  adminTab === tab.id
+                    ? 'border-[#a3b18a] text-[#a3b18a] bg-[#1e221b]/40'
+                    : 'border-transparent text-gray-400 hover:text-white hover:border-[#363d33]'
+                }`}
+              >
+                <i className={`${tab.icon} text-[11px]`}></i>
+                <span>{tab.label}</span>
+                {typeof tab.count === 'number' && (
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                    adminTab === tab.id ? 'bg-[#a3b18a]/20 text-[#a3b18a]' : 'bg-[#1e221b] text-gray-400'
+                  }`}>
+                    {tab.count}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+
+          <div className="hidden lg:flex items-center text-[11px] text-[#a3b18a] font-mono">
+            <span>کلینیک پوست و فیشال زعفرانیه</span>
+          </div>
         </div>
 
         {/* Admin Main Body */}
-        <main className="flex-1 max-w-7xl mx-auto w-full p-6 sm:p-12">
+        <main className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-8 lg:p-10 space-y-6">
           
+          {/* TOP SUMMARY STAT WIDGETS (کارت‌های آمار جذاب و ساده) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {/* Widget 1: Services */}
+            <div
+              onClick={() => setAdminTab('services')}
+              className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                adminTab === 'services'
+                  ? 'bg-[#242922] border-[#a3b18a] shadow-lg shadow-[#a3b18a]/5'
+                  : 'bg-[#242922]/70 hover:bg-[#242922] border-[#363d33] hover:border-[#a3b18a]/40'
+              }`}
+            >
+              <div className="flex items-center justify-between text-[#a3b18a] mb-2">
+                <span className="text-[11px] font-semibold text-gray-300">خدمات و پکیج‌ها</span>
+                <span className="w-7 h-7 rounded-lg bg-[#1e221b] flex items-center justify-center text-xs">
+                  <i className="fa-solid fa-spa"></i>
+                </span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold font-mono text-[#f1f5f9]">{services.length}</span>
+                <span className="text-[10px] text-gray-400">مورد فعال</span>
+              </div>
+              <span className="text-[10px] text-[#a3b18a] block mt-1">مدیریت قیمت‌ها و پروتکل‌ها ←</span>
+            </div>
+
+            {/* Widget 2: Weekly Schedule */}
+            <div
+              onClick={() => setAdminTab('schedule')}
+              className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                adminTab === 'schedule'
+                  ? 'bg-[#242922] border-[#a3b18a] shadow-lg shadow-[#a3b18a]/5'
+                  : 'bg-[#242922]/70 hover:bg-[#242922] border-[#363d33] hover:border-[#a3b18a]/40'
+              }`}
+            >
+              <div className="flex items-center justify-between text-emerald-400 mb-2">
+                <span className="text-[11px] font-semibold text-gray-300">ظرفیت این هفته</span>
+                <span className="w-7 h-7 rounded-lg bg-[#1e221b] flex items-center justify-center text-xs">
+                  <i className="fa-solid fa-calendar-check"></i>
+                </span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold font-mono text-emerald-400">
+                  {weeklySchedule.filter(s => s.status === 'available').length}
+                </span>
+                <span className="text-[10px] text-gray-400">سانس باز از ۲۱</span>
+              </div>
+              <span className="text-[10px] text-emerald-400 block mt-1">کنترل رزروهای هفتگی ←</span>
+            </div>
+
+            {/* Widget 3: Reviews */}
+            <div
+              onClick={() => setAdminTab('reviews')}
+              className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                adminTab === 'reviews'
+                  ? 'bg-[#242922] border-[#a3b18a] shadow-lg shadow-[#a3b18a]/5'
+                  : 'bg-[#242922]/70 hover:bg-[#242922] border-[#363d33] hover:border-[#a3b18a]/40'
+              }`}
+            >
+              <div className="flex items-center justify-between text-amber-400 mb-2">
+                <span className="text-[11px] font-semibold text-gray-300">نظرات مراجعین</span>
+                <span className="w-7 h-7 rounded-lg bg-[#1e221b] flex items-center justify-center text-xs">
+                  <i className="fa-solid fa-star"></i>
+                </span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold font-mono text-[#f1f5f9]">{testimonials.length}</span>
+                <span className="text-[10px] text-amber-400 font-semibold">★ ۵.۰ رضایت</span>
+              </div>
+              <span className="text-[10px] text-amber-400/90 block mt-1">دیدگاه‌ها و تجربیات ←</span>
+            </div>
+
+            {/* Widget 4: Security */}
+            <div
+              onClick={() => setAdminTab('security')}
+              className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                adminTab === 'security'
+                  ? 'bg-[#242922] border-[#a3b18a] shadow-lg shadow-[#a3b18a]/5'
+                  : 'bg-[#242922]/70 hover:bg-[#242922] border-[#363d33] hover:border-[#a3b18a]/40'
+              }`}
+            >
+              <div className="flex items-center justify-between text-purple-400 mb-2">
+                <span className="text-[11px] font-semibold text-gray-300">امنیت پنل</span>
+                <span className="w-7 h-7 rounded-lg bg-[#1e221b] flex items-center justify-center text-xs">
+                  <i className="fa-solid fa-lock"></i>
+                </span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold font-mono text-purple-300">محافظت‌شده</span>
+              </div>
+              <span className="text-[10px] text-purple-300 block mt-1">تغییر پین‌کد ورود ←</span>
+            </div>
+          </div>
+
           {/* TAB 1: SERVICES & PACKAGES */}
           {adminTab === 'services' && (
             <div className="space-y-6">
@@ -718,11 +1003,12 @@ export default function App() {
                 </form>
               ) : (
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <h3 className="text-base font-bold text-[#f1f5f9]">لیست خدمات و پکیج‌ها</h3>
-                      <p className="text-xs text-gray-400">مدیریت درمان‌ها، تکنیک‌ها و مواد مؤثره</p>
+                      <p className="text-xs text-gray-400">مدیریت درمان‌ها، پروتکل‌ها و مواد مؤثره</p>
                     </div>
+                    
                     <button
                       onClick={() => setEditingService({
                         id: '',
@@ -736,36 +1022,105 @@ export default function App() {
                         keyActives: [],
                         image: creamRibbonTubeImg
                       })}
-                      className="px-4 py-2 bg-[#a3b18a] text-[#1e221b] font-bold text-xs rounded-xl hover:bg-[#b5c49b] transition-colors flex items-center gap-1.5 cursor-pointer shadow-md"
+                      className="px-4 py-2.5 bg-[#a3b18a] text-[#1e221b] font-bold text-xs rounded-xl hover:bg-[#b5c49b] transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md hover:scale-102 active:scale-98 shrink-0"
                     >
                       <i className="fa-solid fa-plus text-xs"></i>
                       <span>افزودن خدمت جدید</span>
                     </button>
                   </div>
 
+                  {/* Search and Category Filter */}
+                  <div className="flex flex-col sm:flex-row gap-2.5">
+                    <div className="relative flex-1">
+                      <i className="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                      <input
+                        type="text"
+                        value={serviceSearchQuery}
+                        onChange={e => setServiceSearchQuery(e.target.value)}
+                        placeholder="جستجو در نام خدمت، تکنیک یا مواد مؤثره..."
+                        className="w-full bg-[#242922] border border-[#363d33] focus:border-[#a3b18a] rounded-xl pr-9 pl-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none transition-colors"
+                      />
+                      {serviceSearchQuery && (
+                        <button
+                          onClick={() => setServiceSearchQuery('')}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs"
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Service Cards Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {services.map(s => (
-                      <div key={s.id} className="bg-[#242922] p-4 rounded-xl border border-[#363d33] flex flex-col justify-between text-xs space-y-3">
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <span className="text-[10px] text-[#a3b18a] font-mono">{s.categoryLabel} · {s.duration}</span>
-                            <h4 className="font-bold text-[#f1f5f9] text-sm mt-0.5">{s.title}</h4>
-                            <p className="text-gray-400 text-[11px] mt-1 line-clamp-2">{s.technique}</p>
+                    {services
+                      .filter(s => {
+                        if (!serviceSearchQuery.trim()) return true;
+                        const q = serviceSearchQuery.toLowerCase();
+                        return (
+                          s.title.toLowerCase().includes(q) ||
+                          s.technique.toLowerCase().includes(q) ||
+                          s.subtitle.toLowerCase().includes(q) ||
+                          s.keyActives.some(a => a.toLowerCase().includes(q))
+                        );
+                      })
+                      .map(s => (
+                        <div key={s.id} className="bg-[#242922] p-4.5 rounded-2xl border border-[#363d33] hover:border-[#a3b18a]/40 transition-all flex flex-col justify-between text-xs space-y-3 group shadow-sm">
+                          <div className="flex items-start gap-3">
+                            <img
+                              src={s.image}
+                              alt={s.title}
+                              className="w-16 h-16 rounded-xl object-cover border border-[#363d33] shrink-0"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2">
+                                <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
+                                  s.category === 'treatment'
+                                    ? 'bg-[#a3b18a]/15 text-[#a3b18a] border-[#a3b18a]/30'
+                                    : 'bg-amber-950/40 text-amber-300 border-amber-500/30'
+                                }`}>
+                                  {s.categoryLabel}
+                                </span>
+                                <span className="text-[10px] text-gray-400 font-mono">
+                                  {s.duration}
+                                </span>
+                              </div>
+                              <h4 className="font-bold text-[#f1f5f9] text-sm mt-1 truncate">{s.title}</h4>
+                              <p className="text-gray-400 text-[11px] mt-0.5 line-clamp-2 leading-relaxed">{s.technique}</p>
+                            </div>
+                          </div>
+
+                          {s.keyActives.length > 0 && (
+                            <div className="flex flex-wrap gap-1 pt-1">
+                              {s.keyActives.slice(0, 3).map((act, i) => (
+                                <span key={i} className="text-[10px] bg-[#1e221b] text-gray-300 px-2 py-0.5 rounded-md border border-[#363d33]/80">
+                                  {act}
+                                </span>
+                              ))}
+                              {s.keyActives.length > 3 && (
+                                <span className="text-[10px] text-[#a3b18a]">+{s.keyActives.length - 3} مورد دیگر</span>
+                              )}
+                            </div>
+                          )}
+
+                          <div className="flex items-center justify-end gap-2 pt-2.5 border-t border-[#363d33]">
+                            <button
+                              onClick={() => setEditingService(s)}
+                              className="px-3 py-1.5 bg-[#1e221b] hover:bg-[#363d33] text-[#a3b18a] rounded-lg border border-[#363d33] transition-colors cursor-pointer flex items-center gap-1.5"
+                            >
+                              <i className="fa-regular fa-pen-to-square text-[10px]"></i>
+                              <span>ویرایش</span>
+                            </button>
+                            <button
+                              onClick={() => handleDeleteService(s.id, s.title)}
+                              className="px-3 py-1.5 bg-[#1e221b] hover:bg-red-950/40 text-red-400 rounded-lg border border-[#363d33] transition-colors cursor-pointer flex items-center gap-1.5"
+                            >
+                              <i className="fa-regular fa-trash-can text-[10px]"></i>
+                              <span>حذف</span>
+                            </button>
                           </div>
                         </div>
-
-                        <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#363d33]">
-                          <button onClick={() => setEditingService(s)} className="px-3 py-1 bg-[#1e221b] hover:bg-[#363d33] text-[#a3b18a] rounded border border-[#363d33] transition-colors cursor-pointer">
-                            <i className="fa-regular fa-pen-to-square ml-1"></i>
-                            <span>ویرایش</span>
-                          </button>
-                          <button onClick={() => handleDeleteService(s.id, s.title)} className="px-3 py-1 bg-[#1e221b] hover:bg-red-950/40 text-red-400 rounded border border-[#363d33] transition-colors cursor-pointer">
-                            <i className="fa-regular fa-trash-can ml-1"></i>
-                            <span>حذف</span>
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               )}
@@ -1119,6 +1474,10 @@ export default function App() {
             <a href="#services" className="hover:text-[#a3b18a] transition-colors font-medium">
               منوی خدمات
             </a>
+            <a href="#skin-analysis" className="hover:text-[#a3b18a] transition-colors font-medium text-[#a3b18a] flex items-center gap-1.5">
+              <span>آنالیز آنلاین پوست</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-ping"></span>
+            </a>
             <a href="#schedule" className="hover:text-[#a3b18a] transition-colors font-medium flex items-center gap-1.5">
               <span>سانس‌های هفتگی</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-pulse"></span>
@@ -1166,7 +1525,7 @@ export default function App() {
             </div>
           </a>
 
-          {/* Zone 3: Direct Instagram Booking CTA with Luxury Micro-Interactions */}
+          {/* Zone 3: Direct Instagram Booking CTA */}
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => handleOpenInstagramBooking()}
@@ -1206,6 +1565,17 @@ export default function App() {
             >
               <span>منوی خدمات و پکیج‌های تخصصی</span>
               <i className="fa-solid fa-spa text-[#a3b18a]"></i>
+            </a>
+            <a
+              href="#skin-analysis"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="min-h-[48px] px-4 py-3 rounded-xl bg-[#242922] hover:bg-[#2e352b] text-[#a3b18a] text-xs font-semibold flex items-center justify-between border border-[#a3b18a]/30"
+            >
+              <div className="flex items-center gap-2">
+                <span>آنالیز آنلاین پوست و روتین</span>
+                <span className="w-2 h-2 rounded-full bg-[#a3b18a] animate-pulse"></span>
+              </div>
+              <i className="fa-solid fa-camera-rotate text-[#a3b18a]"></i>
             </a>
             <a
               href="#schedule"
@@ -1440,6 +1810,14 @@ export default function App() {
 
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 2.5 SMART SKIN ANALYSIS & ROUTINE CONSULTATION */}
+      {/* ========================================================================= */}
+      <SkinAnalysisSection
+        instagramHandle={bio.instagramHandle}
+        onShowToast={showToast}
+      />
 
       {/* ========================================================================= */}
       {/* 3. WEEKLY AVAILABLE SLOTS & INTERACTIVE SCHEDULE GRID (CRITICAL MODIFICATION) */}
