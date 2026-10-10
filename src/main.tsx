@@ -59,9 +59,14 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             <h2 style={{ color: '#a3b18a', margin: '0 0 12px 0', fontSize: '20px', fontWeight: 'bold' }}>
               کلینیک هدی پژمان
             </h2>
-            <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: '1.7', margin: '0 0 20px 0' }}>
+            <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: '1.7', margin: '0 0 12px 0' }}>
               در بارگذاری صفحه خطایی رخ داده است. با کلیک بر روی دکمه زیر حافظه موقت پاک شده و صفحه دوباره بارگذاری خواهد شد.
             </p>
+            {this.state.errorMessage && (
+              <div style={{ backgroundColor: '#1a1d17', color: '#f87171', padding: '10px 14px', borderRadius: '8px', fontSize: '12px', fontFamily: 'monospace', marginBottom: '16px', textAlign: 'left', wordBreak: 'break-all', border: '1px solid #7f1d1d' }}>
+                {this.state.errorMessage}
+              </div>
+            )}
             <button
               onClick={() => {
                 try {
