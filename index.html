@@ -23,13 +23,6 @@
   </head>
   <body style="background-color: #1e221b; color: #f1f5f9; min-height: 100vh; margin: 0;" class="bg-[#1f231e] text-[#f1f5f9] antialiased selection:bg-[#a3b18a]/30 selection:text-white">
     <div id="root"></div>
-    <script>
-      // Automatic fallback for GitHub Pages when deployed directly from main root
-      if (window.location.hostname.endsWith('github.io') && !window.location.pathname.includes('/docs')) {
-        var baseUri = window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/';
-        window.location.replace(baseUri + 'docs/' + window.location.search + window.location.hash);
-      }
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" referrerpolicy="no-referrer"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
