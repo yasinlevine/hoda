@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Image assets
 import heroModelImg from './assets/images/hero_calm_model_1791131706401.jpg';
@@ -267,6 +267,7 @@ export default function App() {
 
   // Editing items in Admin
   const [editingService, setEditingService] = useState<ServiceItem | null>(null);
+  const serviceImageInputRef = useRef<HTMLInputElement>(null);
   const [editingReview, setEditingReview] = useState<TestimonialItem | null>(null);
   const [bioForm, setBioForm] = useState<TherapistBio>(bio);
 
@@ -952,6 +953,82 @@ export default function App() {
                         onChange={e => setEditingService({ ...editingService, subtitle: e.target.value })}
                         className="w-full bg-[#1e221b] border border-[#363d33] rounded px-3 py-2 text-white font-mono focus:outline-none focus:border-[#a3b18a]"
                       />
+                    </div>
+                  </div>
+
+                  {/* Image Management Section */}
+                  <div className="bg-[#1e221b] p-4 rounded-xl border border-[#363d33] space-y-3 text-xs">
+                    <label className="block text-gray-300 font-bold">تصویر خدمت یا پکیج:</label>
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
+                      <img
+                        src={editingService.image || creamRibbonTubeImg}
+                        alt="پیش‌نمایش تصویر خدمت"
+                        className="w-20 h-20 rounded-xl object-cover border border-[#a3b18a]/40 shadow-md shrink-0"
+                      />
+                      <div className="flex-1 space-y-2 w-full">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <input
+                            type="file"
+                            ref={serviceImageInputRef}
+                            accept="image/*"
+                            className="hidden"
+                            onChange={e => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                  setEditingService({ ...editingService, image: reader.result as string });
+                                  showToast('تصویر جدید با موفقیت بارگذاری شد.');
+                                };
+                                reader.readAsDataURL(file);
+                              }
+                            }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => serviceImageInputRef.current?.click()}
+                            className="px-3.5 py-2 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-1.5"
+                          >
+                            <i className="fa-solid fa-upload"></i>
+                            <span>آپلود عکس جدید از دستگاه</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setEditingService({ ...editingService, image: creamRibbonTubeImg });
+                              showToast('تصویر به حالت پیش‌فرض بازنشانی شد.');
+                            }}
+                            className="px-3 py-2 bg-[#242922] hover:bg-[#363d33] text-gray-300 rounded-lg border border-[#363d33] transition-colors cursor-pointer"
+                          >
+                            حذف و بازگشت به پیش‌فرض
+                          </button>
+                        </div>
+                        <p className="text-[11px] text-gray-400">
+                          می‌توانید تصویر دلخواه خود را آپلود کنید یا از گالری تصاویر کلینیک انتخاب کنید:
+                        </p>
+                        <div className="flex items-center gap-2 pt-1 overflow-x-auto pb-1">
+                          {[
+                            { name: 'تیوب کرم', url: creamRibbonTubeImg },
+                            { name: 'پالتو/سوچ', url: creamSwatchesImg },
+                            { name: 'پدستال', url: apothecaryPedestalImg },
+                            { name: 'کلینیک', url: clinicInteriorImg },
+                            { name: 'مدل', url: heroModelImg }
+                          ].map((preset, idx) => (
+                            <button
+                              key={idx}
+                              type="button"
+                              onClick={() => setEditingService({ ...editingService, image: preset.url })}
+                              className={`w-10 h-10 rounded-lg overflow-hidden border transition-all shrink-0 cursor-pointer ${
+                                editingService.image === preset.url ? 'border-[#a3b18a] ring-2 ring-[#a3b18a]/30' : 'border-[#363d33] opacity-70 hover:opacity-100'
+                              }`}
+                              title={preset.name}
+                            >
+                              <img src={preset.url} alt={preset.name} className="w-full h-full object-cover" />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
