@@ -57,12 +57,30 @@
     scroll-behavior: smooth;
     background-color: #1e221b;
     color: #f1f5f9;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
   }
 
   body {
     font-family: var(--font-yekan);
     background-color: #1e221b;
     color: #f1f5f9;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    position: relative;
+  }
+
+  #root {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    position: relative;
+  }
+
+  /* Prevent AOS from creating horizontal scrollbars on mobile RTL */
+  [data-aos] {
     overflow-x: hidden;
   }
 

@@ -33,7 +33,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
   onOpenInstagramModal,
 }) => {
   return (
-    <section id="top" className="relative min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden pt-6 sm:pt-8 pb-8 sm:pb-10 font-vazir">
+    <section id="top" className="relative min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden pt-6 sm:pt-8 pb-8 sm:pb-10 font-vazir w-full max-w-full min-w-0">
       
       {/* ===================================================================== */}
       {/* LAYER 0: 3D TYPOGRAPHY BEHIND CENTRAL MODEL (DESKTOP ONLY) */}
@@ -67,10 +67,10 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       {/* ===================================================================== */}
       {/* LAYER 10: MAIN FOREGROUND CONTENT & ADAPTIVE RESPONSIVE LAYOUT */}
       {/* ===================================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10 flex-1 my-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full min-w-0 max-w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10 flex-1 my-auto">
         
-        {/* Editorial Headline & Action CTAs */}
-        <div className="lg:col-span-4 text-center lg:text-right space-y-4 sm:space-y-6 order-2 lg:order-1">
+        {/* Editorial Headline & Action CTAs - Order 1 on mobile, Order 1 on desktop */}
+        <div className="lg:col-span-4 text-center lg:text-right space-y-4 sm:space-y-6 order-1 lg:order-1 w-full">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#242922]/90 border border-[#a3b18a]/40 text-[11px] sm:text-xs text-[#a3b18a] backdrop-blur-md shadow-sm mx-auto lg:mx-0">
             <span className="w-2 h-2 rounded-full bg-[#a3b18a] animate-pulse"></span>
@@ -86,7 +86,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           </p>
 
           {/* Action Buttons: Spacious & Touch-friendly (Min 48px height) with Luxury Micro-Interactions */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2 w-full max-w-md mx-auto lg:mx-0">
             <a
               href="#schedule"
               className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-glow-pulse"
@@ -117,8 +117,8 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Central Cutout Portrait of Woman with Headwrap & 3D Slow Float */}
-        <div className="lg:col-span-5 relative flex justify-center items-center order-1 lg:order-2 my-2 sm:my-0">
+        {/* Central Cutout Portrait of Woman with Headwrap - Order 2 on mobile, Order 2 on desktop */}
+        <div className="lg:col-span-5 relative flex justify-center items-center order-2 lg:order-2 my-2 sm:my-0 w-full">
           
           {/* Subtle Organic Halo Glow */}
           <div className="absolute inset-0 bg-[#a3b18a]/15 rounded-full blur-3xl scale-95 pointer-events-none"></div>
@@ -201,15 +201,15 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       {/* ===================================================================== */}
       {/* LAYER 25: TOUCH-FRIENDLY THUMBNAIL SELECTOR STRIP */}
       {/* ===================================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full mt-6 relative z-20">
-        <div className="flex items-center gap-3 overflow-x-auto no-scrollbar py-2 snap-x snap-mandatory">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full min-w-0 max-w-full mt-4 sm:mt-6 relative z-20">
+        <div className="w-full min-w-0 max-w-full flex items-center gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar py-2 snap-x snap-mandatory justify-start sm:justify-center">
           {heroThumbnails.map((thumb) => (
             <button
               key={thumb.id}
               onClick={() => onSelectThumbnail(thumb.id)}
-              className={`flex items-center gap-3 p-2.5 rounded-2xl border transition-all shrink-0 cursor-pointer text-right snap-start min-h-[52px] ${
+              className={`flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl border transition-all shrink-0 cursor-pointer text-right snap-start min-h-[50px] sm:min-h-[52px] max-w-[240px] sm:max-w-none ${
                 activeThumbnail === thumb.id
-                  ? 'bg-[#242922] border-[#a3b18a] shadow-lg shadow-[#a3b18a]/10'
+                  ? 'bg-[#242922] border-[#a3b18a] shadow-lg shadow-[#a3b18a]/10 ring-1 ring-[#a3b18a]/50'
                   : 'bg-[#1e221b]/80 border-[#363d33] hover:border-gray-500'
               }`}
             >
@@ -217,10 +217,10 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
                 src={thumb.img}
                 alt={thumb.title}
                 referrerPolicy="no-referrer"
-                className="w-10 h-10 rounded-xl object-cover"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover shrink-0"
               />
-              <div className="pr-1 pl-3">
-                <span className="text-xs font-bold text-[#f1f5f9] block">
+              <div className="pr-1 pl-2.5 truncate">
+                <span className="text-xs font-bold text-[#f1f5f9] block truncate">
                   {thumb.title}
                 </span>
                 <span className="text-[10px] text-gray-400 block line-clamp-1">
@@ -235,3 +235,4 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
     </section>
   );
 };
+

@@ -127,6 +127,7 @@ export default function App() {
             easing: 'ease-out',
             once: true,
             offset: 50,
+            disable: 'mobile',
           });
         }
       } catch {
@@ -1526,7 +1527,7 @@ export default function App() {
   return (
     <div
       dir="rtl"
-      className="min-h-screen bg-[#1e221b] text-[#f1f5f9] relative selection:bg-[#a3b18a]/30 selection:text-white font-vazir"
+      className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#1e221b] text-[#f1f5f9] relative selection:bg-[#a3b18a]/30 selection:text-white font-vazir"
     >
       {/* Toast Notification */}
       {toastMessage && (
@@ -1538,85 +1539,92 @@ export default function App() {
 
       {/* TOP NAVIGATION BAR: 100% CLEAN & CLIENT-FOCUSED */}
       <header className="sticky top-0 z-40 bg-[#1e221b]/90 backdrop-blur-md border-b border-[#363d33]/50 px-4 sm:px-6 lg:px-12 py-3.5 sm:py-5 transition-all">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto grid grid-cols-3 lg:grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 relative">
           
-          {/* Zone 1: Desktop Navigation Links (hidden on mobile) */}
-          <nav className="hidden lg:flex items-center gap-6 text-xs sm:text-sm tracking-wider text-[#e2e8f0]/90">
-            <a href="#bio" className="hover:text-[#a3b18a] transition-colors font-medium">
-              درباره متخصص
-            </a>
-            <a href="#devices" className="hover:text-[#a3b18a] transition-colors font-medium">
-              تجهیزات بالینی
-            </a>
-            <a href="#services" className="hover:text-[#a3b18a] transition-colors font-medium">
-              منوی خدمات
-            </a>
-            <a href="#skin-analysis" className="hover:text-[#a3b18a] transition-colors font-medium text-[#a3b18a] flex items-center gap-1.5">
-              <span>آنالیز آنلاین پوست</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-ping"></span>
-            </a>
-            <a href="#schedule" className="hover:text-[#a3b18a] transition-colors font-medium flex items-center gap-1.5">
-              <span>سانس‌های هفتگی</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-pulse"></span>
-            </a>
-            <a href="#reviews" className="hover:text-[#a3b18a] transition-colors font-medium">
-              نظرات مراجعین
-            </a>
-          </nav>
-
-          {/* Zone 1 (Mobile): Hamburger Menu Toggle Button */}
-          <div className="flex lg:hidden items-center">
+          {/* Zone 1 (Right side in RTL): Hamburger on Mobile / Nav Links on Desktop */}
+          <div className="flex items-center justify-start">
+            {/* Zone 1 (Mobile): Hamburger Menu Toggle Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-[#242922] border border-[#363d33] text-[#a3b18a] hover:text-white flex items-center justify-center cursor-pointer transition-all active:scale-95 shadow-sm"
-              aria-label="Toggle navigation menu"
+              className="lg:hidden min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-[#242922] border border-[#363d33] text-[#a3b18a] hover:text-white flex items-center justify-center cursor-pointer transition-all active:scale-95 shadow-sm"
+              aria-label="منوی ناوبری"
             >
               {isMobileMenuOpen ? (
-                <i className="fa-solid fa-xmark text-base text-[#a3b18a]"></i>
+                <i className="fa-solid fa-xmark text-lg text-[#a3b18a]"></i>
               ) : (
                 <svg className="w-5 h-5 text-[#a3b18a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
+
+            {/* Zone 1 (Desktop): Navigation Links */}
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-xs sm:text-sm tracking-wider text-[#e2e8f0]/90">
+              <a href="#bio" className="hover:text-[#a3b18a] transition-colors font-medium">
+                درباره متخصص
+              </a>
+              <a href="#devices" className="hover:text-[#a3b18a] transition-colors font-medium">
+                تجهیزات بالینی
+              </a>
+              <a href="#services" className="hover:text-[#a3b18a] transition-colors font-medium">
+                منوی خدمات
+              </a>
+              <a href="#skin-analysis" className="hover:text-[#a3b18a] transition-colors font-medium text-[#a3b18a] flex items-center gap-1.5">
+                <span>آنالیز آنلاین</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-ping"></span>
+              </a>
+              <a href="#schedule" className="hover:text-[#a3b18a] transition-colors font-medium flex items-center gap-1.5">
+                <span>سانس‌های هفتگی</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-pulse"></span>
+              </a>
+              <a href="#reviews" className="hover:text-[#a3b18a] transition-colors font-medium">
+                نظرات
+              </a>
+            </nav>
           </div>
 
-          {/* Zone 2: Center Botanical Geometric Emblem & Brand Name */}
-          <a href="#top" className="flex items-center gap-2 sm:gap-2.5 group absolute lg:static left-1/2 -translate-x-1/2 lg:translate-x-0 z-10" aria-label="Home">
-            <svg
-              className="w-7 h-7 sm:w-8 sm:h-8 text-[#a3b18a] group-hover:rotate-45 transition-transform duration-700 animate-emblem-spin"
-              viewBox="0 0 100 100"
-              fill="currentColor"
+          {/* Zone 2 (Center): Exact Centered Botanical Geometric Emblem & Brand Name */}
+          <div className="flex items-center justify-center">
+            <a
+              href="#top"
+              className="flex items-center justify-center gap-2 sm:gap-2.5 group transition-transform hover:scale-105"
+              aria-label="صفحه اصلی هدی پژمان"
             >
-              <circle cx="50" cy="50" r="10" />
-              <path d="M50 15 C45 30, 45 35, 50 40 C55 35, 55 30, 50 15 Z" />
-              <path d="M50 85 C45 70, 45 65, 50 60 C55 65, 55 70, 50 85 Z" />
-              <path d="M15 50 C30 45, 35 45, 40 50 C35 55, 30 55, 15 50 Z" />
-              <path d="M85 50 C70 45, 65 45, 60 50 C65 55, 70 55, 85 50 Z" />
-              <path d="M25 25 C38 35, 40 40, 43 43 C40 40, 35 38, 25 25 Z" />
-              <path d="M75 75 C62 65, 60 60, 57 57 C60 60, 65 62, 75 75 Z" />
-              <path d="M25 75 C38 65, 40 60, 43 57 C40 60, 35 62, 25 75 Z" />
-              <path d="M75 25 C62 35, 60 40, 57 43 C60 40, 65 38, 75 25 Z" />
-            </svg>
-            <div className="flex flex-col text-right">
-              <span className="font-bold text-sm sm:text-base tracking-widest text-[#f1f5f9] group-hover:text-[#a3b18a] transition-colors">
-                {bio.name}
-              </span>
-              <span className="text-[9px] sm:text-[10px] text-[#a3b18a] font-mono tracking-wider">
-                SKINCARE & FACIAL
-              </span>
-            </div>
-          </a>
+              <svg
+                className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#a3b18a] group-hover:rotate-45 transition-transform duration-700 animate-emblem-spin shrink-0"
+                viewBox="0 0 100 100"
+                fill="currentColor"
+              >
+                <circle cx="50" cy="50" r="10" />
+                <path d="M50 15 C45 30, 45 35, 50 40 C55 35, 55 30, 50 15 Z" />
+                <path d="M50 85 C45 70, 45 65, 50 60 C55 65, 55 70, 50 85 Z" />
+                <path d="M15 50 C30 45, 35 45, 40 50 C35 55, 30 55, 15 50 Z" />
+                <path d="M85 50 C70 45, 65 45, 60 50 C65 55, 70 55, 85 50 Z" />
+                <path d="M25 25 C38 35, 40 40, 43 43 C40 40, 35 38, 25 25 Z" />
+                <path d="M75 75 C62 65, 60 60, 57 57 C60 60, 65 62, 75 75 Z" />
+                <path d="M25 75 C38 65, 40 60, 43 57 C40 60, 35 62, 25 75 Z" />
+                <path d="M75 25 C62 35, 60 40, 57 43 C60 40, 65 38, 75 25 Z" />
+              </svg>
+              <div className="flex flex-col text-right leading-tight">
+                <span className="font-bold text-xs sm:text-sm lg:text-base tracking-wide text-[#f1f5f9] group-hover:text-[#a3b18a] transition-colors whitespace-nowrap">
+                  {bio.name}
+                </span>
+                <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#a3b18a] font-mono tracking-wider whitespace-nowrap">
+                  SKINCARE & FACIAL
+                </span>
+              </div>
+            </a>
+          </div>
 
-          {/* Zone 3: Direct Instagram Booking CTA */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          {/* Zone 3 (Left side in RTL): Symmetrical Booking CTA Button */}
+          <div className="flex items-center justify-end">
             <button
               onClick={() => handleOpenInstagramBooking()}
-              className="min-h-[44px] px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-xs rounded-full transition-all duration-300 shadow-md flex items-center gap-1.5 sm:gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-luxury-shimmer"
+              className="min-h-[44px] px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-xs rounded-full transition-all duration-300 shadow-md flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-luxury-shimmer"
             >
-              <i className="fa-solid fa-calendar-plus text-xs sm:text-sm animate-pulse"></i>
+              <i className="fa-solid fa-calendar-check text-xs sm:text-sm"></i>
               <span className="hidden sm:inline">نوبت‌دهی دایرکت</span>
-              <span className="sm:hidden text-[11px]">رزرو نوبت</span>
+              <span className="sm:hidden text-[11px] whitespace-nowrap">رزرو نوبت</span>
             </button>
           </div>
 
@@ -1711,7 +1719,7 @@ export default function App() {
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <div data-aos="fade-right" className="lg:col-span-5 relative">
+            <div data-aos="fade-up" className="lg:col-span-5 relative">
               <div className="relative rounded-3xl bg-gradient-to-b from-[#1e221b] via-[#242922] to-[#1e221b] border-2 border-[#a3b18a]/40 p-8 sm:p-10 shadow-2xl flex flex-col justify-between space-y-6 text-center hover:border-[#a3b18a]/70 hover:-translate-y-1 transition-all duration-300">
                 
                 {/* Prestige Seal & Monogram */}
@@ -1759,7 +1767,7 @@ export default function App() {
               </div>
             </div>
 
-            <div data-aos="fade-left" className="lg:col-span-7 space-y-6">
+            <div data-aos="fade-up" className="lg:col-span-7 space-y-6">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-[#a3b18a] block mb-2">
                   CERTIFIED BEAUTY THERAPIST · BIO
