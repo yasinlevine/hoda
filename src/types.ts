@@ -1,10 +1,12 @@
-// Image assets for luxury facial clinic
+// Image assets for luxury facial clinic (Apple minimalist pastel mint theme)
+import heroMintPortrait from './assets/images/hero_mint_portrait_1791715409991.jpg';
+import mintSerumStone from './assets/images/mint_serum_stone_1791715420104.jpg';
+import facialTherapyMint from './assets/images/facial_therapy_mint_1791715429822.jpg';
+import mintCreamSwirl from './assets/images/mint_cream_swirl_1791715440247.jpg';
 import heroModelImg from './assets/images/hero_calm_model_1791131706401.jpg';
-import creamSwatchesImg from './assets/images/cream_swatches_1791131717732.jpg';
-import creamRibbonTubeImg from './assets/images/cream_ribbon_tube_1791131730751.jpg';
-import apothecaryPedestalImg from './assets/images/apothecary_pedestal_1791131741408.jpg';
 import clinicInteriorImg from './assets/images/clinic_interior_sage_1791130976626.jpg';
-import botanicalSerumImg from './assets/images/botanical_serum_stone_1791130988275.jpg';
+
+export { heroMintPortrait, mintSerumStone, facialTherapyMint, mintCreamSwirl };
 
 export const INSTAGRAM_URL = 'https://www.instagram.com/hodapezhman_skincare';
 export const INSTAGRAM_DIRECT_URL = 'https://ig.me/m/hodapezhman_skincare';
@@ -107,7 +109,7 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     benefits: 'کاهش لک‌های ناشی از آفتاب و ملاسما، مهار لک‌های هورمونی و روشن‌سازی یکنواخت تنالیته چهره بدون سوختگی یا تیرگی برگشتی.',
     duration: '۷۵ دقیقه',
     keyActives: ['ترانگزامیک اسید ۳٪', 'آلفا آربوتین', 'گلوتاتیون خالص', 'نیاسینامید ۵٪'],
-    image: creamRibbonTubeImg
+    image: mintCreamSwirl
   },
   {
     id: 'carboxytherapy',
@@ -119,7 +121,7 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     benefits: 'بهبود فوری خونرسانی مویرگی، دفع سموم بافت، کاهش تیرگی دور چشم و لیفتینگ طبیعی پوست از طریق تحریک موضعی نئوکلاژنز.',
     duration: '۶۰ دقیقه',
     keyActives: ['دی‌اکسید کربن فعال دارویی', 'عصاره چای سبز', 'اسیدهای آمینه ضروری', 'هیالورونات سدیم'],
-    image: clinicInteriorImg
+    image: facialTherapyMint
   },
   {
     id: 'rejuvenation',
@@ -131,7 +133,7 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     benefits: 'پر شدن خطوط ریز پنجه‌کلاغی، بازگشت الاستیسیته بافت پوستی و سفتی قابل لمس گونه‌ها با تحریک فیبروبلاست‌های خود پوست.',
     duration: '۸۰ دقیقه',
     keyActives: ['پپتید مس GHK-Cu', 'ماتریکسیل ۳۰۰۰', 'الاستین دریایی', 'عصاره سلول بنیادی رازیانه کوهی'],
-    image: heroModelImg
+    image: heroMintPortrait
   },
   {
     id: 'aquapeel',
@@ -143,7 +145,7 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     benefits: 'تخلیه کامل جوش‌های سرسیاه و کمدون‌های بسته بدون ایجاد درد یا اسکار، جمع‌شدن منافذ باز و ایجاد سطحی صاف و درخشان.',
     duration: '۶۰ دقیقه',
     keyActives: ['AHA طبیعی نیشکر', 'BHA بید سفید', 'عصاره سنتلا آسیاتیکا', 'آب معدنی ایزوتونیک'],
-    image: apothecaryPedestalImg
+    image: mintSerumStone
   },
   {
     id: 'acne-sebum-package',
@@ -155,7 +157,7 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     benefits: 'متعادل‌سازی ترشح چربی غدد سباسه، خشک‌کردن جوش‌های التهابی فعال و مهار لک‌های قرمز پس از آکنه (PIE) بدون نازک‌شدن سد دفاعی.',
     duration: '۹۰ دقیقه',
     keyActives: ['زینک PCA ۲٪', 'نیاسینامید دارویی', 'روغن درخت چای با درجه پزشکی', 'خاک رس سبز کائولن'],
-    image: creamSwatchesImg
+    image: mintCreamSwirl
   },
   {
     id: 'hydration-brightening-package',
@@ -167,7 +169,7 @@ export const DEFAULT_SERVICES: ServiceItem[] = [
     benefits: 'درمان کامل خشکی مزمن و کشیدگی پوست، قفل شدن رطوبت تا ۷۲ ساعت و درخشش طبیعی پوست بر پایه تقویت سرامیدهای سد دفاعی.',
     duration: '۸۵ دقیقه',
     keyActives: ['سرامیدهای بیومیمتیک ۱ و ۳', 'اسکوالن ۱۰۰٪ نیشکر', 'هیالورونیک اسید با ۳ وزن مولکولی', 'ویتامین B5'],
-    image: botanicalSerumImg
+    image: mintSerumStone
   }
 ];
 

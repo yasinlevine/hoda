@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Image assets
-import heroModelImg from './assets/images/hero_calm_model_1791131706401.jpg';
-import creamSwatchesImg from './assets/images/cream_swatches_1791131717732.jpg';
-import creamRibbonTubeImg from './assets/images/cream_ribbon_tube_1791131730751.jpg';
-import apothecaryPedestalImg from './assets/images/apothecary_pedestal_1791131741408.jpg';
-import clinicInteriorImg from './assets/images/clinic_interior_sage_1791130976626.jpg';
-
-// Modular types and data
+// Image assets & modular data
 import {
   INSTAGRAM_URL,
   INSTAGRAM_HANDLE,
@@ -18,8 +11,13 @@ import {
   DEFAULT_BIO,
   DEFAULT_SERVICES,
   DEFAULT_WEEKLY_SCHEDULE,
-  DEFAULT_TESTIMONIALS
+  DEFAULT_TESTIMONIALS,
+  heroMintPortrait,
+  mintSerumStone,
+  facialTherapyMint,
+  mintCreamSwirl
 } from './types';
+import clinicInteriorImg from './assets/images/clinic_interior_sage_1791130976626.jpg';
 
 // Components
 import { WeeklyScheduleSection } from './components/WeeklyScheduleSection';
@@ -29,6 +27,7 @@ import { EditorialHeroSection } from './components/EditorialHeroSection';
 import { ClinicalDevicesSection } from './components/ClinicalDevicesSection';
 import { ServiceCard } from './components/ServiceCard';
 import { SkinAnalysisSection } from './components/SkinAnalysisSection';
+import { InstagramHighlightsSection } from './components/InstagramHighlightsSection';
 
 // ---------------------------------------------------------------------------
 // SAFE BROWSER STORAGE UTILITY (Prevents crashing in private browsing/sandboxes)
@@ -411,37 +410,37 @@ export default function App() {
     ? services
     : services.filter(s => s.category === serviceFilter);
 
-  // Hero bottom thumbnails
+  // Hero bottom thumbnails (Apple pastel mint visual theme)
   const heroThumbnails = [
     {
       id: 0,
-      title: 'بافت‌های کرمی فیتوتراپی',
-      desc: 'پالت بافت‌های آبرسان گیاهی و پاکسازی',
-      img: creamSwatchesImg
+      title: 'درمان علمی و بازسازی سد دفاعی',
+      desc: 'پرتره بالینی و آرامش پایدار پوست',
+      img: heroMintPortrait
     },
     {
       id: 1,
-      title: 'آرامش سد دفاعی پوست',
-      desc: 'تنفس عمیق و کلاژن‌سازی بیولوژیک',
-      img: heroModelImg
+      title: 'بافت‌های کرمی فیتوتراپی',
+      desc: 'امولسیون بازسازی سد دفاعی لاملار',
+      img: mintCreamSwirl
     },
     {
       id: 2,
-      title: 'ریبون چربی‌های لاملار',
-      desc: 'امولسیون بازسازی سد دفاعی',
-      img: creamRibbonTubeImg
+      title: 'تراپی فیشیال با سنگ یشم',
+      desc: 'درناژ لنفاوی و ماساژ آرامش‌بخش',
+      img: facialTherapyMint
     },
     {
       id: 3,
-      title: 'فضای استریل و اتاق VIP کلینیک',
-      desc: 'محیط ایزوله و آرامش‌بخش در زعفرانیه',
-      img: clinicInteriorImg
+      title: 'سرم‌های خالص بیولوژیک',
+      desc: 'سرامیدهای سازگار با ساختار پوست',
+      img: mintSerumStone
     },
     {
       id: 4,
-      title: 'لابراتوار درماتولوژی اوریا',
-      desc: 'عصاره‌های خالص در شیشه‌های دارویی',
-      img: apothecaryPedestalImg
+      title: 'فضای استریل و VIP کلینیک',
+      desc: 'محیط ایزوله و آرامش‌بخش در زعفرانیه',
+      img: clinicInteriorImg
     }
   ];
 
@@ -958,13 +957,13 @@ export default function App() {
                   </div>
 
                   {/* Image Management Section */}
-                  <div className="bg-[#1e221b] p-4 rounded-xl border border-[#363d33] space-y-3 text-xs">
+                    <div className="bg-[#1e221b] p-4 rounded-xl border border-[#363d33] space-y-3 text-xs">
                     <label className="block text-gray-300 font-bold">تصویر خدمت یا پکیج:</label>
                     <div className="flex flex-col sm:flex-row items-center gap-4">
                       <img
-                        src={editingService.image || creamRibbonTubeImg}
+                        src={editingService.image || mintCreamSwirl}
                         alt="پیش‌نمایش تصویر خدمت"
-                        className="w-20 h-20 rounded-xl object-cover border border-[#a3b18a]/40 shadow-md shrink-0"
+                        className="w-20 h-20 rounded-xl object-cover border border-[#7bc4bc]/40 shadow-md shrink-0"
                       />
                       <div className="flex-1 space-y-2 w-full">
                         <div className="flex flex-wrap items-center gap-2">
@@ -988,7 +987,7 @@ export default function App() {
                           <button
                             type="button"
                             onClick={() => serviceImageInputRef.current?.click()}
-                            className="px-3.5 py-2 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-1.5"
+                            className="px-3.5 py-2 bg-[#7bc4bc] hover:bg-[#68b5ac] text-white font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-1.5"
                           >
                             <i className="fa-solid fa-upload"></i>
                             <span>آپلود عکس جدید از دستگاه</span>
@@ -997,7 +996,7 @@ export default function App() {
                           <button
                             type="button"
                             onClick={() => {
-                              setEditingService({ ...editingService, image: creamRibbonTubeImg });
+                              setEditingService({ ...editingService, image: mintCreamSwirl });
                               showToast('تصویر به حالت پیش‌فرض بازنشانی شد.');
                             }}
                             className="px-3 py-2 bg-[#242922] hover:bg-[#363d33] text-gray-300 rounded-lg border border-[#363d33] transition-colors cursor-pointer"
@@ -1010,11 +1009,11 @@ export default function App() {
                         </p>
                         <div className="flex items-center gap-2 pt-1 overflow-x-auto pb-1">
                           {[
-                            { name: 'تیوب کرم', url: creamRibbonTubeImg },
-                            { name: 'پالتو/سوچ', url: creamSwatchesImg },
-                            { name: 'پدستال', url: apothecaryPedestalImg },
-                            { name: 'کلینیک', url: clinicInteriorImg },
-                            { name: 'مدل', url: heroModelImg }
+                            { name: 'بافت کرم فیتوتراپی', url: mintCreamSwirl },
+                            { name: 'سرم بیوتکنولوژی', url: mintSerumStone },
+                            { name: 'ماساژ و فیشیال جید', url: facialTherapyMint },
+                            { name: 'فضای کلینیک', url: clinicInteriorImg },
+                            { name: 'پرتره مدل سد دفاعی', url: heroMintPortrait }
                           ].map((preset, idx) => (
                             <button
                               key={idx}
@@ -1098,7 +1097,7 @@ export default function App() {
                         benefits: '',
                         duration: '۶۰ دقیقه',
                         keyActives: [],
-                        image: creamRibbonTubeImg
+                        image: mintCreamSwirl
                       })}
                       className="px-4 py-2.5 bg-[#a3b18a] text-[#1e221b] font-bold text-xs rounded-xl hover:bg-[#b5c49b] transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md hover:scale-102 active:scale-98 shrink-0"
                     >
@@ -1527,18 +1526,18 @@ export default function App() {
   return (
     <div
       dir="rtl"
-      className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#1e221b] text-[#f1f5f9] relative selection:bg-[#a3b18a]/30 selection:text-white font-vazir"
+      className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#f8faf9] text-[#1e293b] relative selection:bg-[#7bc4bc]/30 selection:text-[#134e48] font-vazir"
     >
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-[#2d322b]/95 border border-[#a3b18a]/60 text-[#f1f5f9] px-6 py-3 rounded-full shadow-2xl backdrop-blur-md flex items-center gap-3 text-xs tracking-wide animate-bounce">
-          <i className="fa-brands fa-instagram text-[#a3b18a]"></i>
-          <span>{toastMessage}</span>
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-white/95 border border-[#7bc4bc]/50 text-[#0f172a] px-6 py-3 rounded-full shadow-2xl backdrop-blur-md flex items-center gap-3 text-xs tracking-wide animate-bounce">
+          <i className="fa-brands fa-instagram text-[#7bc4bc]"></i>
+          <span className="font-semibold">{toastMessage}</span>
         </div>
       )}
 
-      {/* TOP NAVIGATION BAR: 100% CLEAN & CLIENT-FOCUSED */}
-      <header className="sticky top-0 z-40 bg-[#1e221b]/90 backdrop-blur-md border-b border-[#363d33]/50 px-4 sm:px-6 lg:px-12 py-3.5 sm:py-5 transition-all">
+      {/* TOP NAVIGATION BAR: APPLE-STYLE SLEEK STICKY BAR */}
+      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-[#7bc4bc]/20 px-4 sm:px-6 lg:px-12 py-3.5 sm:py-4 transition-all shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
         <div className="max-w-7xl mx-auto grid grid-cols-3 lg:grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 relative">
           
           {/* Zone 1 (Right side in RTL): Hamburger on Mobile / Nav Links on Desktop */}
@@ -1546,38 +1545,38 @@ export default function App() {
             {/* Zone 1 (Mobile): Hamburger Menu Toggle Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-[#242922] border border-[#363d33] text-[#a3b18a] hover:text-white flex items-center justify-center cursor-pointer transition-all active:scale-95 shadow-sm"
+              className="lg:hidden min-h-[44px] min-w-[44px] p-2.5 rounded-2xl bg-[#f0f9f8] border border-[#7bc4bc]/30 text-[#134e48] hover:text-[#0f172a] flex items-center justify-center cursor-pointer transition-all active:scale-95 shadow-2xs"
               aria-label="منوی ناوبری"
             >
               {isMobileMenuOpen ? (
-                <i className="fa-solid fa-xmark text-lg text-[#a3b18a]"></i>
+                <i className="fa-solid fa-xmark text-lg text-[#134e48]"></i>
               ) : (
-                <svg className="w-5 h-5 text-[#a3b18a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5 text-[#134e48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
 
             {/* Zone 1 (Desktop): Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-xs sm:text-sm tracking-wider text-[#e2e8f0]/90">
-              <a href="#bio" className="hover:text-[#a3b18a] transition-colors font-medium">
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-xs sm:text-sm tracking-normal text-[#334155]">
+              <a href="#bio" className="hover:text-[#134e48] transition-colors font-medium">
                 درباره متخصص
               </a>
-              <a href="#devices" className="hover:text-[#a3b18a] transition-colors font-medium">
+              <a href="#devices" className="hover:text-[#134e48] transition-colors font-medium">
                 تجهیزات بالینی
               </a>
-              <a href="#services" className="hover:text-[#a3b18a] transition-colors font-medium">
+              <a href="#services" className="hover:text-[#134e48] transition-colors font-medium">
                 منوی خدمات
               </a>
-              <a href="#skin-analysis" className="hover:text-[#a3b18a] transition-colors font-medium text-[#a3b18a] flex items-center gap-1.5">
+              <a href="#skin-analysis" className="hover:text-[#134e48] transition-colors font-medium text-[#1d5750] flex items-center gap-1.5">
                 <span>آنالیز آنلاین</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-ping"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#7bc4bc] animate-ping"></span>
               </a>
-              <a href="#schedule" className="hover:text-[#a3b18a] transition-colors font-medium flex items-center gap-1.5">
+              <a href="#schedule" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
                 <span>سانس‌های هفتگی</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#a3b18a] animate-pulse"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#7bc4bc] animate-pulse"></span>
               </a>
-              <a href="#reviews" className="hover:text-[#a3b18a] transition-colors font-medium">
+              <a href="#reviews" className="hover:text-[#134e48] transition-colors font-medium">
                 نظرات
               </a>
             </nav>
@@ -1591,7 +1590,7 @@ export default function App() {
               aria-label="صفحه اصلی هدی پژمان"
             >
               <svg
-                className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#a3b18a] group-hover:rotate-45 transition-transform duration-700 animate-emblem-spin shrink-0"
+                className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#7bc4bc] group-hover:rotate-45 transition-transform duration-700 animate-emblem-spin shrink-0"
                 viewBox="0 0 100 100"
                 fill="currentColor"
               >
@@ -1606,25 +1605,24 @@ export default function App() {
                 <path d="M75 25 C62 35, 60 40, 57 43 C60 40, 65 38, 75 25 Z" />
               </svg>
               <div className="flex flex-col text-right leading-tight">
-                <span className="font-bold text-xs sm:text-sm lg:text-base tracking-wide text-[#f1f5f9] group-hover:text-[#a3b18a] transition-colors whitespace-nowrap">
+                <span className="font-bold text-xs sm:text-sm lg:text-base tracking-wide text-[#0f172a] group-hover:text-[#134e48] transition-colors whitespace-nowrap">
                   {bio.name}
                 </span>
-                <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#a3b18a] font-mono tracking-wider whitespace-nowrap">
+                <span className="text-[8px] sm:text-[9px] lg:text-[10px] text-[#134e48] font-mono tracking-wider whitespace-nowrap font-semibold">
                   SKINCARE & FACIAL
                 </span>
               </div>
             </a>
           </div>
 
-          {/* Zone 3 (Left side in RTL): Symmetrical Booking CTA Button */}
+          {/* Zone 3 (Left side in RTL): Prominent High-End CTA Button ("ثبت نوبت") with soft glow */}
           <div className="flex items-center justify-end">
             <button
               onClick={() => handleOpenInstagramBooking()}
-              className="min-h-[44px] px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-xs rounded-full transition-all duration-300 shadow-md flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-luxury-shimmer"
+              className="min-h-[44px] px-4 sm:px-6 py-2 sm:py-2.5 bg-[#7bc4bc] hover:bg-[#68b5ac] text-white font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-[0_4px_16px_rgba(123,196,188,0.45)] border border-white/40 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-luxury-shimmer"
             >
               <i className="fa-solid fa-calendar-check text-xs sm:text-sm"></i>
-              <span className="hidden sm:inline">نوبت‌دهی دایرکت</span>
-              <span className="sm:hidden text-[11px] whitespace-nowrap">رزرو نوبت</span>
+              <span>ثبت نوبت</span>
             </button>
           </div>
 
@@ -1632,67 +1630,67 @@ export default function App() {
 
         {/* Mobile Dropdown Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-3 pt-3 border-t border-[#363d33] space-y-2.5 animate-mobile-menu text-right bg-[#1e221b]/95 p-3 rounded-2xl border border-[#363d33]/80 shadow-2xl backdrop-blur-xl">
+          <div className="lg:hidden mt-3 pt-3 border-t border-slate-100 space-y-2 animate-mobile-menu text-right bg-white/95 p-3.5 rounded-3xl border border-[#7bc4bc]/30 shadow-xl backdrop-blur-xl">
             <a
               href="#bio"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-xl bg-[#242922] hover:bg-[#2e352b] text-[#f1f5f9] text-xs font-semibold flex items-center justify-between"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
             >
               <span>درباره متخصص و مدارک CIDESCO</span>
-              <i className="fa-solid fa-graduation-cap text-[#a3b18a]"></i>
+              <i className="fa-solid fa-graduation-cap text-[#7bc4bc]"></i>
             </a>
             <a
               href="#devices"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-xl bg-[#242922] hover:bg-[#2e352b] text-[#f1f5f9] text-xs font-semibold flex items-center justify-between"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
             >
               <span>تجهیزات و فناوری‌های بالینی</span>
-              <i className="fa-solid fa-microchip text-[#a3b18a]"></i>
+              <i className="fa-solid fa-microchip text-[#7bc4bc]"></i>
             </a>
             <a
               href="#services"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-xl bg-[#242922] hover:bg-[#2e352b] text-[#f1f5f9] text-xs font-semibold flex items-center justify-between"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
             >
               <span>منوی خدمات و پکیج‌های تخصصی</span>
-              <i className="fa-solid fa-spa text-[#a3b18a]"></i>
+              <i className="fa-solid fa-spa text-[#7bc4bc]"></i>
             </a>
             <a
               href="#skin-analysis"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-xl bg-[#242922] hover:bg-[#2e352b] text-[#a3b18a] text-xs font-semibold flex items-center justify-between border border-[#a3b18a]/30"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] text-xs font-semibold flex items-center justify-between border border-[#7bc4bc]/30"
             >
               <div className="flex items-center gap-2">
                 <span>آنالیز آنلاین پوست و روتین</span>
-                <span className="w-2 h-2 rounded-full bg-[#a3b18a] animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
               </div>
-              <i className="fa-solid fa-camera-rotate text-[#a3b18a]"></i>
+              <i className="fa-solid fa-camera-rotate text-[#7bc4bc]"></i>
             </a>
             <a
               href="#schedule"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-xl bg-[#242922] hover:bg-[#2e352b] text-[#f1f5f9] text-xs font-semibold flex items-center justify-between border border-[#a3b18a]/30"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] text-xs font-semibold flex items-center justify-between border border-[#7bc4bc]/30"
             >
               <div className="flex items-center gap-2">
                 <span>جدول سانس‌های هفتگی</span>
-                <span className="w-2 h-2 rounded-full bg-[#a3b18a] animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
               </div>
-              <i className="fa-solid fa-calendar-check text-[#a3b18a]"></i>
+              <i className="fa-solid fa-calendar-check text-[#7bc4bc]"></i>
             </a>
             <a
               href="#reviews"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-xl bg-[#242922] hover:bg-[#2e352b] text-[#f1f5f9] text-xs font-semibold flex items-center justify-between"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
             >
               <span>نظرات و رضایت مراجعین</span>
-              <i className="fa-solid fa-star text-[#a3b18a]"></i>
+              <i className="fa-solid fa-star text-[#7bc4bc]"></i>
             </a>
           </div>
         )}
       </header>
 
       {/* ========================================================================= */}
-      {/* EDITORIAL HERO SECTION (WITH 3D LAYERED TYPOGRAPHY & RADIANT PORTRAIT) */}
+      {/* EDITORIAL HERO SECTION (CENTERED ARCH, RADIANT PORTRAIT, PERSIAN TYPO) */}
       {/* ========================================================================= */}
       <EditorialHeroSection
         bio={bio}
@@ -1701,6 +1699,13 @@ export default function App() {
         onSelectThumbnail={(idx) => setActiveThumbnail(idx)}
         onOpenZoom={() => setIsZoomModalOpen(true)}
         onOpenInstagramModal={() => handleOpenInstagramBooking()}
+      />
+
+      {/* ========================================================================= */}
+      {/* HIGHLIGHTS / SOCIAL SECTION ("آخرین‌ها از اینستاگرام") */}
+      {/* ========================================================================= */}
+      <InstagramHighlightsSection
+        onOpenBookingModal={(title) => handleOpenInstagramBooking(title)}
       />
 
       {/* ========================================================================= */}
@@ -1714,53 +1719,53 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 1. PROFESSIONAL IDENTITY & BIO SECTION */}
       {/* ========================================================================= */}
-      <section id="bio" className="py-24 bg-[#242922] border-t border-[#363d33] relative">
+      <section id="bio" className="py-20 sm:py-24 bg-gradient-to-b from-[#f8faf9] via-[#f0f9f8]/40 to-white border-t border-[#7bc4bc]/20 relative font-vazir">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div data-aos="fade-up" className="lg:col-span-5 relative">
-              <div className="relative rounded-3xl bg-gradient-to-b from-[#1e221b] via-[#242922] to-[#1e221b] border-2 border-[#a3b18a]/40 p-8 sm:p-10 shadow-2xl flex flex-col justify-between space-y-6 text-center hover:border-[#a3b18a]/70 hover:-translate-y-1 transition-all duration-300">
+              <div className="relative rounded-3xl bg-white border border-[#7bc4bc]/30 p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between space-y-6 text-center hover:border-[#7bc4bc] hover:-translate-y-1 transition-all duration-300">
                 
                 {/* Prestige Seal & Monogram */}
                 <div className="relative mx-auto">
-                  <div className="w-20 h-20 rounded-full bg-[#1e221b] border-2 border-[#a3b18a] text-[#a3b18a] flex items-center justify-center text-3xl shadow-lg shadow-[#a3b18a]/10 mx-auto group-hover:scale-105 transition-transform">
+                  <div className="w-20 h-20 rounded-full bg-[#f0f9f8] border-2 border-[#7bc4bc] text-[#7bc4bc] flex items-center justify-center text-3xl shadow-xs mx-auto group-hover:scale-105 transition-transform">
                     <i className="fa-solid fa-certificate"></i>
                   </div>
-                  <span className="inline-block mt-3 px-3 py-1 rounded-full bg-[#a3b18a]/15 text-[#a3b18a] border border-[#a3b18a]/30 text-[10px] font-mono tracking-wider">
+                  <span className="inline-block mt-3 px-3.5 py-1 rounded-full bg-[#f0f9f8] text-[#134e48] border border-[#7bc4bc]/30 text-[10px] font-mono tracking-wider font-semibold">
                     CIDESCO SWITZERLAND ACCREDITED
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#f1f5f9]">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#0f172a]">
                     {bio.name}
                   </h3>
-                  <span className="text-xs text-[#a3b18a] font-medium block mt-1">
+                  <span className="text-xs text-[#134e48] font-semibold block mt-1">
                     {bio.title}
                   </span>
-                  <p className="text-[11px] font-mono text-gray-400 mt-1">
+                  <p className="text-[11px] font-mono text-[#64748b] mt-1">
                     سابقه کاری بالینی: {bio.experienceYears}
                   </p>
                 </div>
 
                 {/* Quote */}
-                <div className="bg-[#1e221b] p-4 rounded-2xl border border-[#363d33] text-right">
-                  <i className="fa-solid fa-quote-right text-[#a3b18a] text-xs mb-1 block"></i>
-                  <p className="text-xs text-[#e2e8f0]/85 leading-relaxed italic">
+                <div className="bg-[#f8faf9] p-4 rounded-2xl border border-slate-200 text-right">
+                  <i className="fa-solid fa-quote-right text-[#7bc4bc] text-xs mb-1 block"></i>
+                  <p className="text-xs text-[#475569] leading-relaxed italic">
                     «سلامت و پایداری سد دفاعی پوست، بنیان درخشش واقعی است. در پروتکل‌های کلینیک، ترمیم سلولی و آرامش پایدار جایگزین مواد آسیب‌رسان و خشن شده‌اند.»
                   </p>
                 </div>
 
                 {/* Clinical Badges */}
-                <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-[#363d33]/60">
-                  <div className="bg-[#1e221b] p-2.5 rounded-xl border border-[#363d33] text-center hover:border-[#a3b18a]/40 transition-colors">
-                    <span className="text-xs font-bold text-[#f1f5f9] block">۱۰۰٪ غیرتهاجمی</span>
-                    <span className="text-[10px] text-gray-400">بدون سوزن و نقاهت</span>
+                <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-slate-100">
+                  <div className="bg-[#f8faf9] p-2.5 rounded-xl border border-slate-200 text-center hover:border-[#7bc4bc]/40 transition-colors">
+                    <span className="text-xs font-bold text-[#0f172a] block">۱۰۰٪ غیرتهاجمی</span>
+                    <span className="text-[10px] text-[#64748b]">بدون سوزن و نقاهت</span>
                   </div>
-                  <div className="bg-[#1e221b] p-2.5 rounded-xl border border-[#363d33] text-center hover:border-[#a3b18a]/40 transition-colors">
-                    <span className="text-xs font-bold text-[#a3b18a] block">منطقه ۱ تهران</span>
-                    <span className="text-[10px] text-gray-400">زعفرانیه · محیط VIP</span>
+                  <div className="bg-[#f8faf9] p-2.5 rounded-xl border border-slate-200 text-center hover:border-[#7bc4bc]/40 transition-colors">
+                    <span className="text-xs font-bold text-[#134e48] block">منطقه ۱ تهران</span>
+                    <span className="text-[10px] text-[#64748b]">زعفرانیه · محیط VIP</span>
                   </div>
                 </div>
 
@@ -1769,56 +1774,56 @@ export default function App() {
 
             <div data-aos="fade-up" className="lg:col-span-7 space-y-6">
               <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-[#a3b18a] block mb-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#1d5750] block mb-2 font-semibold">
                   CERTIFIED BEAUTY THERAPIST · BIO
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#f1f5f9]">
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a]">
                   درباره هدی پژمان و استانداردهای کلینیک
                 </h2>
-                <p className="text-xs text-[#a3b18a] font-medium mt-1">
+                <p className="text-xs text-[#134e48] font-semibold mt-1">
                   {bio.title}
                 </p>
               </div>
 
-              <div className="bg-[#1e221b] p-6 rounded-2xl border border-[#363d33] space-y-3 hover:border-[#a3b18a]/40 transition-colors">
-                <h4 className="text-sm font-bold text-[#f1f5f9] flex items-center gap-2">
-                  <i className="fa-solid fa-graduation-cap text-[#a3b18a]"></i>
+              <div className="bg-white p-6 rounded-2xl border border-[#7bc4bc]/25 space-y-3 hover:border-[#7bc4bc] shadow-2xs transition-colors">
+                <h4 className="text-sm font-bold text-[#0f172a] flex items-center gap-2">
+                  <i className="fa-solid fa-graduation-cap text-[#7bc4bc]"></i>
                   <span>پیشینه علمی و رویکرد بیولوژیک</span>
                 </h4>
-                <p className="text-xs sm:text-sm text-[#e2e8f0]/80 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
                   {bio.academicBackground}
                 </p>
               </div>
 
               <div className="space-y-3">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-gray-400">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748b]">
                   مدارک و سرتیفیکیت‌های بین‌المللی:
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   {bio.certificates.map((cert, idx) => (
                     <div
                       key={idx}
-                      className="bg-[#1e221b] p-3.5 rounded-xl border border-[#363d33] flex items-start gap-2.5 hover:border-[#a3b18a]/50 hover:-translate-y-0.5 transition-all duration-300"
+                      className="bg-white p-3.5 rounded-xl border border-slate-200/90 flex items-start gap-2.5 hover:border-[#7bc4bc] hover:-translate-y-0.5 transition-all duration-300 shadow-2xs"
                     >
-                      <i className="fa-solid fa-circle-check text-[#a3b18a] text-xs mt-0.5 shrink-0"></i>
-                      <span className="text-[#e2e8f0]/90 leading-relaxed">{cert}</span>
+                      <i className="fa-solid fa-circle-check text-[#7bc4bc] text-xs mt-0.5 shrink-0"></i>
+                      <span className="text-[#334155] leading-relaxed">{cert}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-[#1e221b] p-4 rounded-xl border border-[#363d33] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs hover:border-[#a3b18a]/40 transition-colors">
+              <div className="bg-white p-4 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs hover:border-[#7bc4bc]/40 transition-colors shadow-2xs">
                 <div>
-                  <span className="text-gray-400 block text-[11px]">موقعیت کلینیک:</span>
-                  <strong className="text-[#f1f5f9]">{bio.location}</strong>
-                  <p className="text-[10px] text-[#a3b18a] mt-0.5">{bio.serviceArea}</p>
+                  <span className="text-[#64748b] block text-[11px]">موقعیت کلینیک:</span>
+                  <strong className="text-[#0f172a]">{bio.location}</strong>
+                  <p className="text-[10px] text-[#134e48] mt-0.5 font-medium">{bio.serviceArea}</p>
                 </div>
 
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shrink-0 hover:scale-105 active:scale-95"
+                  className="px-4 py-2 bg-[#7bc4bc] hover:bg-[#68b5ac] text-white font-bold text-xs rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm shrink-0 hover:scale-105 active:scale-95"
                 >
                   <i className="fa-brands fa-instagram text-xs"></i>
                   <span>مشاهده اینستاگرام {bio.instagramHandle}</span>
@@ -1835,30 +1840,30 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 2. SPECIALIZED SERVICES & PACKAGES MENU */}
       {/* ========================================================================= */}
-      <section id="services" className="py-24 max-w-7xl mx-auto px-6 sm:px-12">
+      <section id="services" className="py-20 sm:py-24 max-w-7xl mx-auto px-6 sm:px-12 font-vazir">
         <div className="space-y-12">
           
           <div data-aos="fade-up" className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="max-w-2xl">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#a3b18a] block mb-2">
+            <div className="max-w-2xl text-right">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#1d5750] block mb-2 font-semibold">
                 CLINICAL PORTFOLIO & TREATMENT MENU
               </span>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#f1f5f9] tracking-tight">
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0f172a] tracking-tight">
                 منوی خدمات و پکیج‌های تخصصی
               </h2>
-              <p className="text-xs sm:text-sm text-[#e2e8f0]/75 mt-3 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#475569] mt-3 leading-relaxed">
                 هر پروتکل درمانی با بررسی دقیق بیولوژیک سد دفاعی پوست و توسط هدی پژمان متناسب با نیاز بافت شما برنامه‌ریزی می‌شود.
               </p>
             </div>
 
-            {/* Filter Tabs */}
-            <div className="flex items-center gap-2 bg-[#242922] p-1.5 rounded-2xl border border-[#363d33] text-xs self-start">
+            {/* Filter Tabs (Apple Segmented Style) */}
+            <div className="flex items-center gap-2 bg-[#f0f9f8] p-1.5 rounded-2xl border border-[#7bc4bc]/30 text-xs self-start">
               <button
                 onClick={() => setServiceFilter('all')}
                 className={`px-4 py-2 rounded-xl font-medium transition-all duration-200 cursor-pointer ${
                   serviceFilter === 'all'
-                    ? 'bg-[#a3b18a] text-[#1e221b] font-bold shadow-md scale-102'
-                    : 'text-gray-400 hover:text-white'
+                    ? 'bg-[#7bc4bc] text-white font-bold shadow-xs scale-102'
+                    : 'text-[#475569] hover:text-[#0f172a]'
                 }`}
               >
                 همه ({services.length})
@@ -1867,8 +1872,8 @@ export default function App() {
                 onClick={() => setServiceFilter('treatment')}
                 className={`px-4 py-2 rounded-xl font-medium transition-all duration-200 cursor-pointer ${
                   serviceFilter === 'treatment'
-                    ? 'bg-[#a3b18a] text-[#1e221b] font-bold shadow-md scale-102'
-                    : 'text-gray-400 hover:text-white'
+                    ? 'bg-[#7bc4bc] text-white font-bold shadow-xs scale-102'
+                    : 'text-[#475569] hover:text-[#0f172a]'
                 }`}
               >
                 درمان‌های تخصصی
@@ -1877,8 +1882,8 @@ export default function App() {
                 onClick={() => setServiceFilter('package')}
                 className={`px-4 py-2 rounded-xl font-medium transition-all duration-200 cursor-pointer ${
                   serviceFilter === 'package'
-                    ? 'bg-[#a3b18a] text-[#1e221b] font-bold shadow-md scale-102'
-                    : 'text-gray-400 hover:text-white'
+                    ? 'bg-[#7bc4bc] text-white font-bold shadow-xs scale-102'
+                    : 'text-[#475569] hover:text-[#0f172a]'
                 }`}
               >
                 پکیج‌های ترکیبی
@@ -1911,7 +1916,7 @@ export default function App() {
       />
 
       {/* ========================================================================= */}
-      {/* 3. WEEKLY AVAILABLE SLOTS & INTERACTIVE SCHEDULE GRID (CRITICAL MODIFICATION) */}
+      {/* 3. WEEKLY AVAILABLE SLOTS & INTERACTIVE SCHEDULE GRID */}
       {/* ========================================================================= */}
       <WeeklyScheduleSection
         schedule={weeklySchedule}
@@ -1919,19 +1924,19 @@ export default function App() {
       />
 
       {/* ========================================================================= */}
-      {/* 4. SOCIAL PROOF & TESTIMONIALS */}
+      {/* 4. SOCIAL PROOF & TESTIMONIALS (APPLE LUXURY) */}
       {/* ========================================================================= */}
-      <section id="reviews" className="py-24 bg-[#242922] border-t border-[#363d33]">
+      <section id="reviews" className="py-20 sm:py-24 bg-white border-t border-[#7bc4bc]/20 font-vazir">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           
           <div data-aos="fade-up" className="max-w-xl mx-auto text-center mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#a3b18a] block mb-2">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#1d5750] block mb-2 font-semibold">
               CLIENT VOICES & FEEDBACK
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#f1f5f9]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a]">
               تجربیات و بازخورد مراجعین
             </h2>
-            <p className="text-xs sm:text-sm text-[#e2e8f0]/70 mt-2">
+            <p className="text-xs sm:text-sm text-[#475569] mt-2">
               نظرات واقعی مراجعین کلینیک درباره اثرات پروتکل‌های درمانی و استانداردهای بهداشتی.
             </p>
           </div>
@@ -1942,28 +1947,28 @@ export default function App() {
                 key={rev.id}
                 data-aos="fade-up"
                 data-aos-delay={idx * 120}
-                className="bg-[#1e221b] border border-[#363d33] p-6 rounded-2xl relative flex flex-col justify-between shadow-xl hover:border-[#a3b18a]/60 hover:-translate-y-2 hover:shadow-[0_20px_35px_-10px_rgba(0,0,0,0.7)] transition-all duration-300"
+                className="bg-[#f8faf9] border border-slate-200/90 hover:border-[#7bc4bc] p-6 rounded-3xl relative flex flex-col justify-between shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-md hover:-translate-y-1.5 transition-all duration-300"
               >
                 <div>
-                  <div className="flex items-center gap-1 text-[#a3b18a] text-xs mb-4">
+                  <div className="flex items-center gap-1 text-[#7bc4bc] text-xs mb-4">
                     {[...Array(rev.rating)].map((_, i) => (
                       <i key={i} className="fa-solid fa-star"></i>
                     ))}
                   </div>
 
-                  <p className="text-xs sm:text-sm text-[#e2e8f0]/90 leading-relaxed italic">
+                  <p className="text-xs sm:text-sm text-[#334155] leading-relaxed italic">
                     {rev.comment}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-[#363d33]/50">
+                <div className="mt-6 pt-4 border-t border-slate-200">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="text-xs font-bold text-[#f1f5f9]">{rev.name}</h4>
-                      <span className="text-[11px] text-gray-400 block">{rev.role}</span>
+                      <h4 className="text-xs font-bold text-[#0f172a]">{rev.name}</h4>
+                      <span className="text-[11px] text-[#64748b] block">{rev.role}</span>
                     </div>
                   </div>
-                  <span className="text-[10px] text-[#a3b18a] font-mono block mt-2">
+                  <span className="text-[10px] text-[#134e48] font-mono block mt-2 font-medium">
                     خدمت: {rev.treatmentUsed}
                   </span>
                 </div>
@@ -1975,19 +1980,19 @@ export default function App() {
       </section>
 
       {/* ========================================================================= */}
-      {/* INSTAGRAM SCHEDULING BANNER */}
+      {/* INSTAGRAM SCHEDULING BANNER (MINT TEAL GRADIENT) */}
       {/* ========================================================================= */}
-      <section data-aos="fade-up" className="py-24 bg-gradient-to-t from-[#171a15] to-[#1e221b] border-t border-[#363d33]">
+      <section data-aos="fade-up" className="py-20 sm:py-24 bg-gradient-to-t from-[#e6f4f2] to-[#f8faf9] border-t border-[#7bc4bc]/30 font-vazir">
         <div className="max-w-4xl mx-auto px-6 sm:px-12 text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-[#2d322b] border border-[#a3b18a]/40 text-[#a3b18a] flex items-center justify-center text-2xl mx-auto shadow-xl hover:scale-110 transition-transform duration-300">
+          <div className="w-16 h-16 rounded-full bg-white border border-[#7bc4bc]/40 text-[#7bc4bc] flex items-center justify-center text-2xl mx-auto shadow-md hover:scale-110 transition-transform duration-300">
             <i className="fa-brands fa-instagram"></i>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#f1f5f9] tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0f172a] tracking-tight">
             هماهنگی و مشاوره نوبت در دایرکت اینستاگرام
           </h2>
 
-          <p className="text-xs sm:text-sm text-[#e2e8f0]/80 max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#475569] max-w-xl mx-auto leading-relaxed">
             تمامی وقت‌های مشاوره و جلسات درمانی به صورت اختصاصی در دایرکت اینستاگرام ({bio.instagramHandle}) با بررسی پرونده و عکس پوست هماهنگ می‌گردند.
           </p>
 
@@ -1996,7 +2001,7 @@ export default function App() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-lg flex items-center gap-2.5 cursor-pointer hover:scale-105 active:scale-95 animate-glow-pulse"
+              className="px-8 py-3.5 bg-[#7bc4bc] hover:bg-[#68b5ac] text-white font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-[0_6px_20px_rgba(123,196,188,0.5)] flex items-center gap-2.5 cursor-pointer hover:scale-105 active:scale-95 animate-glow-pulse"
             >
               <i className="fa-brands fa-instagram text-base"></i>
               <span>ورود به دایرکت اینستاگرام ({bio.instagramHandle})</span>
@@ -2007,9 +2012,9 @@ export default function App() {
                 navigator.clipboard?.writeText(bio.instagramHandle);
                 showToast(`آیدی کپی شد: ${bio.instagramHandle}`);
               }}
-              className="px-6 py-3.5 bg-[#242922] hover:bg-[#363d33] border border-[#363d33] hover:border-[#a3b18a]/50 text-[#f1f5f9] font-medium text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+              className="px-6 py-3.5 bg-white hover:bg-[#f0f9f8] border border-[#7bc4bc]/40 text-[#134e48] font-semibold text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95 shadow-xs"
             >
-              <i className="fa-regular fa-copy text-[#a3b18a]"></i>
+              <i className="fa-regular fa-copy text-[#7bc4bc]"></i>
               <span className="font-mono">کپی آیدی {bio.instagramHandle}</span>
             </button>
           </div>
@@ -2017,81 +2022,81 @@ export default function App() {
       </section>
 
       {/* ========================================================================= */}
-      {/* FOOTER: 100% CLEAN - ZERO ADMIN ARTIFACTS */}
+      {/* FOOTER: APPLE MINIMALIST */}
       {/* ========================================================================= */}
-      <footer className="bg-[#171a15] border-t border-[#363d33] py-16 text-xs text-[#e2e8f0]/65">
+      <footer className="bg-white border-t border-slate-200 py-16 text-xs text-[#64748b] font-vazir">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           
-          <div className="space-y-4">
+          <div className="space-y-4 text-right">
             <div className="flex items-center gap-3">
-              <span className="w-7 h-7 rounded-full border border-[#a3b18a]/60 flex items-center justify-center text-[#a3b18a]">
+              <span className="w-7 h-7 rounded-full border border-[#7bc4bc]/60 flex items-center justify-center text-[#7bc4bc] bg-[#f0f9f8]">
                 <i className="fa-solid fa-spa text-xs"></i>
               </span>
-              <span className="font-bold text-sm tracking-wider text-[#f1f5f9]">
+              <span className="font-bold text-sm tracking-wider text-[#0f172a]">
                 {bio.name} · {bio.title}
               </span>
             </div>
-            <p className="text-[11px] leading-relaxed text-[#e2e8f0]/70">
+            <p className="text-[11px] leading-relaxed text-[#475569]">
               کلینیک و پورتفولیو تخصصی اسکین‌کر و فیشیال ارگانیک؛ کربوکسی‌تراپی، آکواپیل و جوانسازی بیولوژیک در زعفرانیه.
             </p>
-            <div className="text-[10px] font-mono text-[#a3b18a]">
+            <div className="text-[10px] font-mono text-[#134e48] font-semibold">
               CIDESCO SWITZERLAND · CERTIFIED 2026
             </div>
           </div>
 
-          <div>
-            <h4 className="text-xs font-bold text-[#f1f5f9] tracking-wider uppercase mb-3">
+          <div className="text-right">
+            <h4 className="text-xs font-bold text-[#0f172a] tracking-wider uppercase mb-3">
               دسته‌بندی خدمات و تجهیزات
             </h4>
             <ul className="space-y-2 text-[11px]">
-              <li><a href="#services" className="hover:text-[#a3b18a] transition-colors">درمان لک و هایپرپیگمانتاسیون</a></li>
-              <li><a href="#services" className="hover:text-[#a3b18a] transition-colors">کربوکسی‌تراپی غیرتهاجمی بوهر</a></li>
-              <li><a href="#services" className="hover:text-[#a3b18a] transition-colors">آکواپیل و پاکسازی عمیق گردابی</a></li>
-              <li><a href="#devices" className="hover:text-[#a3b18a] transition-colors text-[#a3b18a]">مشاهده ۴ فناوری و دستگاه بالینی</a></li>
+              <li><a href="#services" className="hover:text-[#134e48] transition-colors">درمان لک و هایپرپیگمانتاسیون</a></li>
+              <li><a href="#services" className="hover:text-[#134e48] transition-colors">کربوکسی‌تراپی غیرتهاجمی بوهر</a></li>
+              <li><a href="#services" className="hover:text-[#134e48] transition-colors">آکواپیل و پاکسازی عمیق گردابی</a></li>
+              <li><a href="#devices" className="hover:text-[#134e48] transition-colors text-[#134e48] font-medium">مشاهده ۴ فناوری و دستگاه بالینی</a></li>
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-xs font-bold text-[#f1f5f9] tracking-wider uppercase mb-3">
+          <div className="text-right">
+            <h4 className="text-xs font-bold text-[#0f172a] tracking-wider uppercase mb-3">
               برنامه کاری و سانس‌ها
             </h4>
             <ul className="space-y-2 text-[11px]">
-              <li><a href="#schedule" className="hover:text-[#a3b18a] transition-colors">جدول سانس‌های هفتگی</a></li>
-              <li><a href="#schedule" className="hover:text-[#a3b18a] transition-colors">شیفت صبح: ۱۰:۰۰ الی ۱۳:۰۰</a></li>
-              <li><a href="#schedule" className="hover:text-[#a3b18a] transition-colors">شیفت عصر: ۱۴:۰۰ الی ۱۷:۰۰</a></li>
-              <li><a href="#schedule" className="hover:text-[#a3b18a] transition-colors">شیفت غروب: ۱۷:۳۰ الی ۲۰:۳۰</a></li>
+              <li><a href="#schedule" className="hover:text-[#134e48] transition-colors">جدول سانس‌های هفتگی</a></li>
+              <li><a href="#schedule" className="hover:text-[#134e48] transition-colors">شیفت صبح: ۱۰:۰۰ الی ۱۳:۰۰</a></li>
+              <li><a href="#schedule" className="hover:text-[#134e48] transition-colors">شیفت عصر: ۱۴:۰۰ الی ۱۷:۰۰</a></li>
+              <li><a href="#schedule" className="hover:text-[#134e48] transition-colors">شیفت غروب: ۱۷:۳۰ الی ۲۰:۳۰</a></li>
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-xs font-bold text-[#f1f5f9] tracking-wider uppercase mb-3">
+          <div className="text-right">
+            <h4 className="text-xs font-bold text-[#0f172a] tracking-wider uppercase mb-3">
               کلینیک و موقعیت
             </h4>
-            <p className="text-[11px] leading-relaxed mb-2 text-[#e2e8f0]/80">
+            <p className="text-[11px] leading-relaxed mb-2 text-[#334155]">
               {bio.location}
             </p>
-            <p className="text-[11px] font-mono text-[#a3b18a]">
+            <p className="text-[11px] font-mono text-[#134e48] font-semibold">
               Instagram: {bio.instagramHandle}
             </p>
-            <p className="text-[11px] text-gray-400 mt-1">
+            <p className="text-[11px] text-[#64748b] mt-1">
               محدوده: {bio.serviceArea}
             </p>
           </div>
 
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 pt-6 border-t border-[#363d33]/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
           <span>© ۱۴۰۵ پورتفولیو و کلینیک اسکین‌کر {bio.name}. تمامی حقوق محفوظ است.</span>
-          <div className="flex items-center gap-6 text-sm text-[#a3b18a]">
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-white transition-colors"><i className="fa-brands fa-instagram"></i></a>
-            <a href="#top" aria-label="Telegram" className="hover:text-white transition-colors"><i className="fa-brands fa-telegram"></i></a>
-            <a href="#top" aria-label="WhatsApp" className="hover:text-white transition-colors"><i className="fa-brands fa-whatsapp"></i></a>
+          <div className="flex items-center gap-6 text-sm text-[#7bc4bc]">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#134e48] transition-colors"><i className="fa-brands fa-instagram"></i></a>
+            <a href="#top" aria-label="Telegram" className="hover:text-[#134e48] transition-colors"><i className="fa-brands fa-telegram"></i></a>
+            <a href="#top" aria-label="WhatsApp" className="hover:text-[#134e48] transition-colors"><i className="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
       </footer>
 
       {/* ========================================================================= */}
-      {/* SLOT BOOKING INSTAGRAM MODAL (NEW) */}
+      {/* SLOT BOOKING INSTAGRAM MODAL */}
       {/* ========================================================================= */}
       {selectedSlotForBooking && (
         <SlotBookingModal
@@ -2105,50 +2110,50 @@ export default function App() {
       {/* GENERAL INSTAGRAM BOOKING CONCIERGE MODAL */}
       {/* ========================================================================= */}
       {isInstagramModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-          <div className="bg-[#242922] border border-[#a3b18a]/50 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative text-center space-y-6 animate-modal-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-md">
+          <div className="bg-white border border-[#7bc4bc]/40 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative text-center space-y-6 animate-modal-in">
             
             <button
               onClick={() => setIsInstagramModalOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#1e221b] border border-[#363d33] text-gray-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center cursor-pointer transition-colors"
             >
               <i className="fa-solid fa-xmark text-xs"></i>
             </button>
 
-            <div className="w-16 h-16 rounded-full bg-[#1e221b] border-2 border-[#a3b18a] text-[#a3b18a] flex items-center justify-center text-3xl mx-auto shadow-lg">
+            <div className="w-16 h-16 rounded-2xl bg-[#f0f9f8] border border-[#7bc4bc]/40 text-[#7bc4bc] flex items-center justify-center text-3xl mx-auto shadow-xs">
               <i className="fa-brands fa-instagram"></i>
             </div>
 
             <div>
-              <span className="text-[11px] font-mono text-[#a3b18a] uppercase tracking-wider">
+              <span className="text-[11px] font-mono text-[#1d5750] uppercase tracking-wider font-semibold">
                 INSTAGRAM CONCIERGE
               </span>
-              <h3 className="text-xl font-bold text-[#f1f5f9] mt-1">
+              <h3 className="text-xl font-bold text-[#0f172a] mt-1">
                 هماهنگی نوبت و مشاوره در اینستاگرام
               </h3>
               {inquiredItemTitle && (
-                <div className="mt-2 inline-block bg-[#1e221b] border border-[#363d33] px-3 py-1 rounded text-xs text-[#a3b18a]">
+                <div className="mt-2 inline-block bg-[#f0f9f8] border border-[#7bc4bc]/30 px-3 py-1 rounded-full text-xs text-[#134e48] font-medium">
                   درخواست برای: {inquiredItemTitle}
                 </div>
               )}
             </div>
 
-            <div className="text-right text-xs space-y-3 bg-[#1e221b] p-4 rounded-xl border border-[#363d33]">
+            <div className="text-right text-xs space-y-3 bg-[#f8faf9] p-4 rounded-2xl border border-slate-200">
               <div className="flex items-start gap-2.5">
-                <span className="w-5 h-5 rounded-full bg-[#363d33] text-[#a3b18a] flex items-center justify-center font-mono font-bold shrink-0 text-[11px]">۱</span>
-                <span className="text-[#e2e8f0]/90 leading-relaxed">
+                <span className="w-5 h-5 rounded-full bg-[#f0f9f8] text-[#134e48] border border-[#7bc4bc]/30 flex items-center justify-center font-mono font-bold shrink-0 text-[11px]">۱</span>
+                <span className="text-[#334155] leading-relaxed">
                   در دایرکت اینستاگرام {bio.instagramHandle} پیام دهید و عکس واضح پوست بدون آرایش یا دغدغه خود را ارسال نمایید.
                 </span>
               </div>
               <div className="flex items-start gap-2.5">
-                <span className="w-5 h-5 rounded-full bg-[#363d33] text-[#a3b18a] flex items-center justify-center font-mono font-bold shrink-0 text-[11px]">۲</span>
-                <span className="text-[#e2e8f0]/90 leading-relaxed">
+                <span className="w-5 h-5 rounded-full bg-[#f0f9f8] text-[#134e48] border border-[#7bc4bc]/30 flex items-center justify-center font-mono font-bold shrink-0 text-[11px]">۲</span>
+                <span className="text-[#334155] leading-relaxed">
                   مشاور کلینیک شرایط پوست را با پروتکل‌های کربوکسی‌تراپی، آکواپیل، درمان لک یا جوانسازی تطبیق داده و زمان مناسب را پیشنهاد می‌دهد.
                 </span>
               </div>
               <div className="flex items-start gap-2.5">
-                <span className="w-5 h-5 rounded-full bg-[#363d33] text-[#a3b18a] flex items-center justify-center font-mono font-bold shrink-0 text-[11px]">۳</span>
-                <span className="text-[#e2e8f0]/90 leading-relaxed">
+                <span className="w-5 h-5 rounded-full bg-[#f0f9f8] text-[#134e48] border border-[#7bc4bc]/30 flex items-center justify-center font-mono font-bold shrink-0 text-[11px]">۳</span>
+                <span className="text-[#334155] leading-relaxed">
                   نوبت شما در محیط آرام و بهداشتی کلینیک در زعفرانیه قطعی شده و لوکیشن دقیق ارسال می‌گردد.
                 </span>
               </div>
@@ -2159,7 +2164,7 @@ export default function App() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 bg-[#a3b18a] hover:bg-[#b5c49b] text-[#1e221b] font-bold text-xs rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+                className="w-full py-3.5 bg-[#7bc4bc] hover:bg-[#68b5ac] text-white font-bold text-xs rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:scale-102 active:scale-98"
               >
                 <i className="fa-brands fa-instagram text-sm"></i>
                 <span>ورود به دایرکت اینستاگرام ({bio.instagramHandle})</span>
@@ -2170,7 +2175,7 @@ export default function App() {
                   navigator.clipboard?.writeText(bio.instagramHandle);
                   showToast(`آیدی کپی شد: ${bio.instagramHandle}`);
                 }}
-                className="w-full py-2.5 bg-[#1e221b] hover:bg-[#363d33] border border-[#363d33] text-[#e2e8f0] font-medium text-xs rounded-xl transition-all duration-200 cursor-pointer hover:scale-102 active:scale-98"
+                className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs rounded-2xl transition-all duration-200 cursor-pointer"
               >
                 کپی نام کاربری ({bio.instagramHandle})
               </button>
@@ -2184,46 +2189,46 @@ export default function App() {
       {/* SERVICE DETAIL PROTOCOL MODAL */}
       {/* ========================================================================= */}
       {selectedService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-          <div className="bg-[#242922] border border-[#a3b18a]/40 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative animate-modal-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-md">
+          <div className="bg-white border border-[#7bc4bc]/40 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative animate-modal-in text-right">
             
             <button
               onClick={() => setSelectedService(null)}
-              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#1e221b] border border-[#363d33] text-gray-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+              className="absolute top-5 left-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center cursor-pointer transition-colors"
             >
               <i className="fa-solid fa-xmark text-sm"></i>
             </button>
 
-            <div className="mb-6 pb-4 border-b border-[#363d33]">
-              <span className="text-xs font-mono text-[#a3b18a] tracking-wider uppercase">
+            <div className="mb-6 pb-4 border-b border-slate-100">
+              <span className="text-xs font-mono text-[#1d5750] tracking-wider uppercase font-semibold">
                 {selectedService.subtitle}
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#f1f5f9] mt-1">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0f172a] mt-1">
                 {selectedService.title}
               </h3>
-              <div className="flex items-center gap-3 text-xs text-[#e2e8f0]/70 mt-2">
-                <span>دسته‌بندی: <strong className="text-[#a3b18a]">{selectedService.categoryLabel}</strong></span>
+              <div className="flex items-center gap-3 text-xs text-[#64748b] mt-2">
+                <span>دسته‌بندی: <strong className="text-[#134e48]">{selectedService.categoryLabel}</strong></span>
                 <span>·</span>
-                <span>مدت جلسه: <strong className="text-[#f1f5f9] font-mono">{selectedService.duration}</strong></span>
+                <span>مدت جلسه: <strong className="text-[#0f172a] font-mono">{selectedService.duration}</strong></span>
               </div>
             </div>
 
-            <div className="space-y-4 text-xs sm:text-sm text-[#e2e8f0]/90 leading-relaxed mb-6">
-              <div className="bg-[#1e221b] p-4 rounded-xl border border-[#363d33]">
-                <h4 className="text-[#a3b18a] font-bold mb-1">تکنیک و مکانیسم بیولوژیک اجرا:</h4>
+            <div className="space-y-4 text-xs sm:text-sm text-[#334155] leading-relaxed mb-6">
+              <div className="bg-[#f8faf9] p-4 rounded-2xl border border-[#7bc4bc]/20">
+                <h4 className="text-[#134e48] font-bold mb-1">تکنیک و مکانیسم بیولوژیک اجرا:</h4>
                 <p>{selectedService.technique}</p>
               </div>
 
-              <div className="bg-[#1e221b] p-4 rounded-xl border border-[#363d33]">
-                <h4 className="text-[#a3b18a] font-bold mb-1">مزایا و نتایج مورد انتظار:</h4>
+              <div className="bg-[#f8faf9] p-4 rounded-2xl border border-[#7bc4bc]/20">
+                <h4 className="text-[#134e48] font-bold mb-1">مزایا و نتایج مورد انتظار:</h4>
                 <p>{selectedService.benefits}</p>
               </div>
 
-              <div className="bg-[#1e221b] p-4 rounded-xl border border-[#363d33]">
-                <h4 className="text-[#a3b18a] font-bold mb-2">مواد مؤثره دارویی و گیاهی:</h4>
+              <div className="bg-[#f8faf9] p-4 rounded-2xl border border-[#7bc4bc]/20">
+                <h4 className="text-[#134e48] font-bold mb-2">مواد مؤثره دارویی و گیاهی:</h4>
                 <div className="flex flex-wrap gap-1.5">
                   {selectedService.keyActives.map((act, i) => (
-                    <span key={i} className="text-xs text-[#f1f5f9] bg-[#242922] px-2.5 py-1 rounded border border-[#363d33]">
+                    <span key={i} className="text-xs text-[#134e48] bg-white px-2.5 py-1 rounded-lg border border-[#7bc4bc]/30 font-medium">
                       {act}
                     </span>
                   ))}
@@ -2231,11 +2236,11 @@ export default function App() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-[#363d33]">
+            <div className="flex items-center justify-between pt-4 border-t border-slate-100">
               <button
                 type="button"
                 onClick={() => setSelectedService(null)}
-                className="px-4 py-2 text-xs text-gray-400 hover:text-white"
+                className="px-4 py-2 text-xs text-slate-500 hover:text-slate-900 font-medium cursor-pointer"
               >
                 بستن
               </button>
@@ -2245,7 +2250,7 @@ export default function App() {
                   setSelectedService(null);
                   handleOpenInstagramBooking(selectedService.title);
                 }}
-                className="px-5 py-2.5 text-xs font-bold text-[#1e221b] bg-[#a3b18a] hover:bg-[#b5c49b] rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-2 hover:scale-105 active:scale-95 shadow-md"
+                className="px-6 py-2.5 text-xs font-bold text-white bg-[#7bc4bc] hover:bg-[#68b5ac] rounded-2xl transition-all duration-300 cursor-pointer flex items-center gap-2 hover:scale-105 active:scale-95 shadow-sm"
               >
                 <i className="fa-brands fa-instagram"></i>
                 <span>رزرو این خدمت در اینستاگرام</span>
@@ -2260,16 +2265,16 @@ export default function App() {
       {/* THUMBNAIL ZOOM / CAMPAIGN PREVIEW MODAL */}
       {/* ========================================================================= */}
       {isZoomModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
-          <div className="bg-[#242922] border border-[#a3b18a]/40 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative animate-modal-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+          <div className="bg-white border border-[#7bc4bc]/40 rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative animate-modal-in text-right">
             <button
               onClick={() => setIsZoomModalOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#1e221b] border border-[#363d33] text-gray-400 hover:text-white flex items-center justify-center cursor-pointer"
+              className="absolute top-4 left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center cursor-pointer"
             >
               <i className="fa-solid fa-xmark text-xs"></i>
             </button>
 
-            <div className="rounded-xl overflow-hidden mb-4 h-80 sm:h-96 bg-[#1e221b]">
+            <div className="rounded-2xl overflow-hidden mb-4 h-80 sm:h-96 bg-[#f0f9f8]">
               <img
                 src={heroThumbnails[activeThumbnail].img}
                 alt={heroThumbnails[activeThumbnail].title}
@@ -2280,18 +2285,18 @@ export default function App() {
 
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-[10px] font-mono text-[#a3b18a] uppercase">{bio.name} ARCHIVE</span>
-                <h3 className="text-base font-bold text-white">
+                <span className="text-[10px] font-mono text-[#1d5750] uppercase font-semibold">{bio.name} ARCHIVE</span>
+                <h3 className="text-base font-bold text-[#0f172a]">
                   {heroThumbnails[activeThumbnail].title}
                 </h3>
-                <p className="text-xs text-gray-400 mt-0.5">
+                <p className="text-xs text-[#64748b] mt-0.5">
                   {heroThumbnails[activeThumbnail].desc}
                 </p>
               </div>
 
               <button
                 onClick={() => setIsZoomModalOpen(false)}
-                className="px-4 py-2 bg-[#a3b18a] text-[#1e221b] font-bold text-xs rounded"
+                className="px-4 py-2 bg-[#7bc4bc] text-white font-bold text-xs rounded-xl"
               >
                 بستن
               </button>
