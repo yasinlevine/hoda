@@ -10,7 +10,9 @@ import {
   CheckIcon,
   DropletIcon,
   SpaIcon,
-  MicrochipIcon
+  MicrochipIcon,
+  MicroscopeIcon,
+  SparklesIcon
 } from './Icons';
 
 interface ClinicalDevicesSectionProps {
@@ -92,7 +94,10 @@ export const ClinicalDevicesSection: React.FC<ClinicalDevicesSectionProps> = ({
 
                 {/* Biological Mechanism */}
                 <div className="bg-[#f8faf9] p-3 rounded-2xl border border-[#7bc4bc]/20 text-xs mb-3 group-hover:border-[#7bc4bc]/40 transition-colors">
-                  <span className="text-[#134e48] font-bold block mb-1">مکانیسم اثر:</span>
+                  <span className="text-[#134e48] font-bold flex items-center gap-1.5 mb-1">
+                    <MicroscopeIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+                    <span>مکانیسم اثر:</span>
+                  </span>
                   <p className="text-[#475569] leading-relaxed text-[11px]">
                     {device.mechanism}
                   </p>
@@ -100,7 +105,10 @@ export const ClinicalDevicesSection: React.FC<ClinicalDevicesSectionProps> = ({
 
                 {/* Clinical Benefit */}
                 <div className="text-xs text-[#475569] leading-relaxed text-[11px] px-1">
-                  <span className="text-[#64748b] block mb-1 font-medium">نتیجه بالینی:</span>
+                  <span className="text-[#64748b] flex items-center gap-1.5 mb-1 font-medium">
+                    <SparklesIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+                    <span>نتیجه بالینی:</span>
+                  </span>
                   <p>{device.benefit}</p>
                 </div>
               </div>

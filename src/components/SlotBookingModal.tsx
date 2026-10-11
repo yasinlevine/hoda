@@ -6,7 +6,9 @@ import {
   CalendarIcon,
   ClockIcon,
   CompassIcon,
-  CopyIcon
+  CopyIcon,
+  MapPinIcon,
+  ArrowLeftIcon
 } from './Icons';
 
 interface SlotBookingModalProps {
@@ -85,7 +87,10 @@ export const SlotBookingModal: React.FC<SlotBookingModalProps> = ({
             </span>
           </div>
           <div className="col-span-2 pt-2 border-t border-slate-200/80 flex items-center justify-between text-[11px]">
-            <span className="text-[#64748b]">لوکیشن: تهران، زعفرانیه (VIP)</span>
+            <span className="text-[#64748b] flex items-center gap-1">
+              <MapPinIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+              <span>لوکیشن: تهران، زعفرانیه (VIP)</span>
+            </span>
             <span className="text-[#134e48] font-bold flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
               ظرفیت باز و آماده هماهنگی
@@ -146,9 +151,10 @@ export const SlotBookingModal: React.FC<SlotBookingModalProps> = ({
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#134e48] underline font-medium"
+              className="hover:text-[#134e48] flex items-center gap-1 font-medium"
             >
-              مشاهده پروفایل اینستاگرام
+              <InstagramIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+              <span>پروفایل اینستاگرام</span>
             </a>
           </div>
         </div>

@@ -13,7 +13,9 @@ import {
   ShieldIcon,
   DropletIcon,
   WandSparklesIcon,
-  SpaIcon
+  SpaIcon,
+  SeedlingIcon,
+  SparklesIcon
 } from './Icons';
 
 interface SkinAnalysisSectionProps {
@@ -482,6 +484,22 @@ export const SkinAnalysisSection: React.FC<SkinAnalysisSectionProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {SKIN_CONCERNS.map(item => {
                   const isChecked = selectedConcerns.includes(item.id);
+                  const renderConcernIcon = () => {
+                    switch (item.id) {
+                      case 'barrier':
+                        return <ShieldCheckIcon className="w-4 h-4 text-[#7bc4bc]" />;
+                      case 'spots':
+                        return <SunIcon className="w-4 h-4 text-[#7bc4bc]" />;
+                      case 'dehydration':
+                        return <DropletIcon className="w-4 h-4 text-[#7bc4bc]" />;
+                      case 'acne_pores':
+                        return <SpaIcon className="w-4 h-4 text-[#7bc4bc]" />;
+                      case 'firmness':
+                        return <SparklesIcon className="w-4 h-4 text-[#7bc4bc]" />;
+                      default:
+                        return <SparklesIcon className="w-4 h-4 text-[#7bc4bc]" />;
+                    }
+                  };
                   return (
                     <button
                       key={item.id}
@@ -497,9 +515,14 @@ export const SkinAnalysisSection: React.FC<SkinAnalysisSectionProps> = ({
                       }`}>
                         {isChecked && <CheckIcon className="w-3.5 h-3.5" />}
                       </span>
-                      <div>
-                        <h4 className="text-xs font-bold text-[#0f172a]">{item.label}</h4>
-                        <p className="text-[11px] text-[#64748b] mt-0.5">{item.desc}</p>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 rounded-lg bg-white border border-[#7bc4bc]/30 flex items-center justify-center shrink-0">
+                            {renderConcernIcon()}
+                          </span>
+                          <h4 className="text-xs font-bold text-[#0f172a]">{item.label}</h4>
+                        </div>
+                        <p className="text-[11px] text-[#64748b] mt-1 pr-8 leading-relaxed">{item.desc}</p>
                       </div>
                     </button>
                   );
@@ -656,8 +679,9 @@ export const SkinAnalysisSection: React.FC<SkinAnalysisSectionProps> = ({
                 <span className="text-xs font-bold text-[#134e48] block">مواد مؤثره کلیدی در این نسخه:</span>
                 <div className="flex flex-wrap gap-2">
                   {routine.keyActives.map((act, i) => (
-                    <span key={i} className="text-xs bg-[#f0f9f8] text-[#134e48] px-3 py-1.5 rounded-xl border border-[#7bc4bc]/30 font-medium">
-                      🌿 {act}
+                    <span key={i} className="text-xs bg-[#f0f9f8] text-[#134e48] px-3 py-1.5 rounded-xl border border-[#7bc4bc]/30 font-medium flex items-center gap-1.5">
+                      <SeedlingIcon className="w-3.5 h-3.5 text-[#7bc4bc] shrink-0" />
+                      <span>{act}</span>
                     </span>
                   ))}
                 </div>

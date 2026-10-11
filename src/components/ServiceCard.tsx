@@ -1,6 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ServiceItem } from '../types';
-import { ClockIcon, ArrowLeftIcon, InstagramIcon } from './Icons';
+import {
+  ClockIcon,
+  ArrowLeftIcon,
+  InstagramIcon,
+  MicroscopeIcon,
+  SparklesIcon,
+  SeedlingIcon
+} from './Icons';
 
 interface ServiceCardProps {
   service: ServiceItem;
@@ -98,17 +105,26 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
           </div>
 
           <div className="text-xs text-[#475569] leading-relaxed bg-[#f8faf9] p-3.5 rounded-2xl border border-[#7bc4bc]/20">
-            <span className="text-[#134e48] font-bold block mb-1">تکنیک و مکانیسم بیولوژیک:</span>
+            <span className="text-[#134e48] font-bold flex items-center gap-1.5 mb-1">
+              <MicroscopeIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+              <span>تکنیک و مکانیسم بیولوژیک:</span>
+            </span>
             <p>{service.technique}</p>
           </div>
 
           <div className="text-xs text-[#475569] leading-relaxed bg-[#f8faf9] p-3.5 rounded-2xl border border-[#7bc4bc]/20">
-            <span className="text-[#134e48] font-bold block mb-1">مزایا و نتایج بالینی:</span>
+            <span className="text-[#134e48] font-bold flex items-center gap-1.5 mb-1">
+              <SparklesIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+              <span>مزایا و نتایج بالینی:</span>
+            </span>
             <p>{service.benefits}</p>
           </div>
 
           <div className="pt-2">
-            <span className="text-[11px] text-[#285f57] font-semibold block mb-1.5">مواد مؤثره کلیدی:</span>
+            <span className="text-[11px] text-[#285f57] font-semibold flex items-center gap-1.5 mb-1.5">
+              <SeedlingIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+              <span>مواد مؤثره کلیدی:</span>
+            </span>
             <div className="flex flex-wrap gap-1.5">
               {service.keyActives.map((act, i) => (
                 <span

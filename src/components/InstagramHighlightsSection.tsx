@@ -7,12 +7,23 @@ import {
   facialTherapyMint,
   mintCreamSwirl
 } from '../types';
+import {
+  InstagramIcon,
+  SparklesIcon,
+  MicrochipIcon,
+  ShieldCheckIcon,
+  SpaIcon,
+  StarIcon,
+  MessageSquareIcon,
+  CalendarCheckIcon,
+  XIcon
+} from './Icons';
 
 export interface StoryHighlight {
   id: string;
   title: string;
   category: string;
-  icon: string;
+  iconNode: React.ReactNode;
   image: string;
   description: string;
 }
@@ -22,7 +33,7 @@ const HIGHLIGHT_STORIES: StoryHighlight[] = [
     id: 'before-after',
     title: 'نتایج بالینی',
     category: 'قبل و بعد',
-    icon: 'fa-wand-magic-sparkles',
+    iconNode: <SparklesIcon className="w-3.5 h-3.5 text-[#134e48]" />,
     image: facialTherapyMint,
     description: 'درمان لک‌های هورمونی و ترمیم سد دفاعی پوست پس از ۳ جلسه پروتکل تلفیقی کربوکسی و پیلینگ لاملار بدون سوزن.'
   },
@@ -30,7 +41,7 @@ const HIGHLIGHT_STORIES: StoryHighlight[] = [
     id: 'devices',
     title: 'تجهیزات VIP',
     category: 'فناوری‌های غیرتهاجمی',
-    icon: 'fa-microchip',
+    iconNode: <MicrochipIcon className="w-3.5 h-3.5 text-[#134e48]" />,
     image: mintSerumStone,
     description: 'معرفی ۴ فناوری پیشرفته کلینیک شامل آکواپیل ورتکس، کربوکسی با اثر بوهر، اولتراسوند نانو و فتوتراپی کالیبره‌شده.'
   },
@@ -38,7 +49,7 @@ const HIGHLIGHT_STORIES: StoryHighlight[] = [
     id: 'barrier-care',
     title: 'سد دفاعی',
     category: 'آموزش تخصصی',
-    icon: 'fa-shield-halved',
+    iconNode: <ShieldCheckIcon className="w-3.5 h-3.5 text-[#134e48]" />,
     image: mintCreamSwirl,
     description: 'چرا محافظت از لیپیدهای بین‌سلولی و سرامیدها، مهم‌ترین فاکتور درخشندگی و عدم پیری زودرس پوست است؟'
   },
@@ -46,7 +57,7 @@ const HIGHLIGHT_STORIES: StoryHighlight[] = [
     id: 'clinic-space',
     title: 'محیط کلینیک',
     category: 'فضای ایزوله زعفرانیه',
-    icon: 'fa-spa',
+    iconNode: <SpaIcon className="w-3.5 h-3.5 text-[#134e48]" />,
     image: heroMintPortrait,
     description: 'محیطی آرام، لوکس و کاملاً استریل با استانداردهای بهداشتی بیمارستانی و پذیرش اختصاصی تک‌نفره در زعفرانیه.'
   },
@@ -54,7 +65,7 @@ const HIGHLIGHT_STORIES: StoryHighlight[] = [
     id: 'client-reviews',
     title: 'رضایت مراجعین',
     category: 'پیام‌ها و بازخوردها',
-    icon: 'fa-star',
+    iconNode: <StarIcon className="w-3.5 h-3.5 text-[#134e48]" />,
     image: facialTherapyMint,
     description: 'پیام‌های صوتی و رضایت مراجعین عزیز از کاهش منافذ باز، شفافیت طبیعی پوست و احساس سبکی بعد از فیشیال.'
   },
@@ -62,7 +73,7 @@ const HIGHLIGHT_STORIES: StoryHighlight[] = [
     id: 'faq-consult',
     title: 'پرسش و پاسخ',
     category: 'مشاوره آنلاین',
-    icon: 'fa-circle-question',
+    iconNode: <MessageSquareIcon className="w-3.5 h-3.5 text-[#134e48]" />,
     image: mintSerumStone,
     description: 'پاسخ به پرتکرارترین سوالات درباره مراقبت بعد از درمان، فاصله بین جلسات و انتخاب روتین متناسب با فصل.'
   }
@@ -104,7 +115,7 @@ export const InstagramHighlightsSection: React.FC<InstagramHighlightsSectionProp
             rel="noopener noreferrer"
             className="self-start sm:self-auto min-h-[40px] px-4 py-2 bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] border border-[#7bc4bc]/30 rounded-full text-xs font-semibold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 shadow-2xs"
           >
-            <i className="fa-brands fa-instagram text-[#7bc4bc] text-sm"></i>
+            <InstagramIcon className="w-4 h-4 text-[#7bc4bc]" />
             <span>مشاهده صفحه اینستاگرام</span>
           </a>
         </div>
@@ -131,7 +142,7 @@ export const InstagramHighlightsSection: React.FC<InstagramHighlightsSectionProp
                       {/* Frosted icon badge overlay */}
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                         <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md text-[#134e48] flex items-center justify-center text-xs shadow-xs">
-                          <i className={`fa-solid ${story.icon}`}></i>
+                          {story.iconNode}
                         </span>
                       </div>
                     </div>
@@ -183,7 +194,7 @@ export const InstagramHighlightsSection: React.FC<InstagramHighlightsSectionProp
                   className="w-7 h-7 rounded-full bg-black/40 text-white flex items-center justify-center cursor-pointer hover:bg-black/60 transition-colors"
                   aria-label="Close"
                 >
-                  <i className="fa-solid fa-xmark text-xs"></i>
+                  <XIcon className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -217,7 +228,7 @@ export const InstagramHighlightsSection: React.FC<InstagramHighlightsSectionProp
                 }}
                 className="flex-1 py-3 bg-[#7bc4bc] hover:bg-[#68b5ac] text-white font-bold text-xs rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:scale-102 active:scale-98"
               >
-                <i className="fa-solid fa-calendar-check"></i>
+                <CalendarCheckIcon className="w-4 h-4" />
                 <span>رزرو نوبت مرتبط با این هایلایت</span>
               </button>
 
@@ -225,10 +236,10 @@ export const InstagramHighlightsSection: React.FC<InstagramHighlightsSectionProp
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3 bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] border border-[#7bc4bc]/30 rounded-2xl text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="px-4 py-3 bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] border border-[#7bc4bc]/30 rounded-2xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                 title="مشاهده در اینستاگرام"
               >
-                <i className="fa-brands fa-instagram text-[#7bc4bc]"></i>
+                <InstagramIcon className="w-4 h-4 text-[#7bc4bc]" />
               </a>
             </div>
 
