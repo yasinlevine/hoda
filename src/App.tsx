@@ -27,7 +27,6 @@ import { EditorialHeroSection } from './components/EditorialHeroSection';
 import { ClinicalDevicesSection } from './components/ClinicalDevicesSection';
 import { ServiceCard } from './components/ServiceCard';
 import { SkinAnalysisSection } from './components/SkinAnalysisSection';
-import { InstagramHighlightsSection } from './components/InstagramHighlightsSection';
 
 // Robust SVG Icons (Zero external CDN dependency)
 import {
@@ -1658,12 +1657,10 @@ export default function App() {
               <a href="#schedule" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
                 <CalendarCheckIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
                 <span>سانس‌های هفتگی</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#7bc4bc] animate-pulse"></span>
               </a>
               <a href="#skin-analysis" className="hover:text-[#134e48] transition-colors font-medium text-[#1d5750] flex items-center gap-1.5">
                 <CameraRotateIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
                 <span>آنالیز آنلاین</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#7bc4bc] animate-ping"></span>
               </a>
               <a href="#services" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
                 <SpaIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
@@ -1742,10 +1739,7 @@ export default function App() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] text-xs font-semibold flex items-center justify-between border border-[#7bc4bc]/30"
             >
-              <div className="flex items-center gap-2">
-                <span>جدول سانس‌های هفتگی</span>
-                <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
-              </div>
+              <span>جدول سانس‌های هفتگی</span>
               <CalendarCheckIcon className="w-4 h-4 text-[#7bc4bc]" />
             </a>
             <a
@@ -1753,10 +1747,7 @@ export default function App() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] text-xs font-semibold flex items-center justify-between border border-[#7bc4bc]/30"
             >
-              <div className="flex items-center gap-2">
-                <span>آنالیز آنلاین پوست و روتین</span>
-                <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
-              </div>
+              <span>آنالیز آنلاین پوست و روتین</span>
               <CameraRotateIcon className="w-4 h-4 text-[#7bc4bc]" />
             </a>
             <a
@@ -1800,22 +1791,15 @@ export default function App() {
       />
 
       {/* ========================================================================= */}
-      {/* HIGHLIGHTS / SOCIAL SECTION ("آخرین‌ها از اینستاگرام") */}
-      {/* ========================================================================= */}
-      <InstagramHighlightsSection
-        onOpenBookingModal={(title) => handleOpenInstagramBooking(title)}
-      />
-
-      {/* ========================================================================= */}
       {/* 1. PROFESSIONAL IDENTITY & BIO SECTION */}
       {/* ========================================================================= */}
-      <section id="bio" className="py-20 sm:py-24 bg-gradient-to-b from-[#f8faf9] via-[#f0f9f8]/40 to-white border-t border-[#7bc4bc]/20 relative font-vazir">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12">
+      <section id="bio" className="py-20 sm:py-24 bg-gradient-to-b from-[#f8faf9] via-[#f0f9f8]/40 to-white border-t border-[#7bc4bc]/20 relative font-vazir overflow-visible">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 overflow-visible">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center overflow-visible">
             
-            <div data-aos="fade-up" className="lg:col-span-5 relative">
-              <div className="relative rounded-3xl bg-white border border-[#7bc4bc]/30 p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between space-y-6 text-center hover:border-[#7bc4bc] hover:-translate-y-1 transition-all duration-300">
+            <div data-aos="fade-up" className="lg:col-span-5 relative pt-2 -mt-2 overflow-visible w-full max-w-[466.328px]">
+              <div className="relative rounded-3xl bg-white border-2 border-[#7bc4bc]/40 p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between space-y-6 text-center hover:border-[#7bc4bc] hover:shadow-[0_12px_36px_rgb(123,196,188,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-visible min-h-[555px]" style={{ minHeight: '555px' }}>
                 
                 {/* Prestige Seal & Monogram */}
                 <div className="relative mx-auto">

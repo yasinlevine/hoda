@@ -80,9 +80,9 @@
     background-color: #f8faf9;
   }
 
-  /* Prevent AOS from creating horizontal scrollbars on mobile RTL */
+  /* Prevent AOS from creating horizontal scrollbars on mobile RTL without clipping vertical hover/shadows */
   [data-aos] {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* Custom scrollbar in luminous pastel mint aesthetic */

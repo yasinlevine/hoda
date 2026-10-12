@@ -5,9 +5,7 @@ import {
   WandSparklesIcon,
   AwardIcon,
   ShieldCheckIcon,
-  ZoomInIcon,
-  SeedlingIcon,
-  HistoryIcon
+  ZoomInIcon
 } from './Icons';
 
 interface EditorialHeroSectionProps {
@@ -63,7 +61,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full min-w-0 max-w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10 flex-1 my-auto">
         
         {/* Editorial Headline & Action CTAs */}
-        <div className="lg:col-span-5 text-center lg:text-right space-y-4 sm:space-y-6 order-1 lg:order-1 w-full">
+        <div className="lg:col-span-7 text-center lg:text-right space-y-4 sm:space-y-6 order-1 lg:order-1 w-full">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#7bc4bc]/40 text-[11px] sm:text-xs text-[#1d5750] shadow-sm backdrop-blur-md mx-auto lg:mx-0">
             <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
@@ -111,18 +109,18 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
         </div>
 
         {/* Central Artistic Arch Framing Container with High-Res Model Portrait */}
-        <div className="lg:col-span-4 relative flex justify-center items-center order-2 lg:order-2 my-2 sm:my-0 w-full">
+        <div className="lg:col-span-5 relative flex justify-center items-center order-2 lg:order-2 my-2 sm:my-0 w-full">
           
           {/* Luminous Mint Halo Behind Arch */}
           <div className="absolute inset-0 bg-[#7bc4bc]/20 rounded-full blur-3xl scale-95 pointer-events-none"></div>
 
           {/* Artistic Arch Frame with Frosted Glass Border */}
-          <div className="relative z-10 w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[380px] aspect-[3.2/4] rounded-t-[130px] sm:rounded-t-[160px] lg:rounded-t-[190px] overflow-hidden border-t-2 border-x-2 border-[#7bc4bc]/60 shadow-[0_20px_50px_-15px_rgba(123,196,188,0.4)] group bg-white animate-portrait-float mx-auto">
+          <div className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] aspect-[3.2/4] rounded-t-[140px] sm:rounded-t-[170px] lg:rounded-t-[195px] overflow-hidden border-t-2 border-x-2 border-[#7bc4bc]/60 shadow-[0_20px_50px_-15px_rgba(123,196,188,0.4)] group bg-white animate-portrait-float mx-auto">
             <img
               src={heroThumbnails[activeThumbnail].img}
               alt={heroThumbnails[activeThumbnail].title}
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />
 
             {/* Seamless Bottom Gradient Fade into Page Background */}
@@ -147,45 +145,6 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
                 <ZoomInIcon className="w-4 h-4" />
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* Left Flank (Desktop): Clinical Credentials & Floating Indicators */}
-        <div className="lg:col-span-3 space-y-3.5 order-3 hidden lg:block">
-          <div className="bg-white/85 border border-[#7bc4bc]/25 p-4 rounded-2xl backdrop-blur-md shadow-sm hover:border-[#7bc4bc]/60 transition-all hover:-translate-y-0.5">
-            <div className="flex items-center gap-2.5 mb-1.5">
-              <span className="w-7 h-7 rounded-lg bg-[#f0f9f8] text-[#7bc4bc] flex items-center justify-center text-xs">
-                <AwardIcon className="w-4 h-4" />
-              </span>
-              <h4 className="text-xs font-bold text-[#0f172a]">بورد CIDESCO سوئیس</h4>
-            </div>
-            <p className="text-[11px] text-[#64748b] leading-relaxed">
-              معتبرترین سرتیفیکیت درماتولوژی و استتیک بالینی بین‌المللی.
-            </p>
-          </div>
-
-          <div className="bg-white/85 border border-[#7bc4bc]/25 p-4 rounded-2xl backdrop-blur-md shadow-sm hover:border-[#7bc4bc]/60 transition-all hover:-translate-y-0.5">
-            <div className="flex items-center gap-2.5 mb-1.5">
-              <span className="w-7 h-7 rounded-lg bg-[#f0f9f8] text-[#7bc4bc] flex items-center justify-center text-xs">
-                <SeedlingIcon className="w-4 h-4" />
-              </span>
-              <h4 className="text-xs font-bold text-[#0f172a]">فرمولاسیون بیومیمتیک</h4>
-            </div>
-            <p className="text-[11px] text-[#64748b] leading-relaxed">
-              سرامیدهای سازگار با ساختار طبیعی پوست و بدون ترکیبات خشن.
-            </p>
-          </div>
-
-          <div className="bg-white/85 border border-[#7bc4bc]/25 p-4 rounded-2xl backdrop-blur-md shadow-sm hover:border-[#7bc4bc]/60 transition-all hover:-translate-y-0.5">
-            <div className="flex items-center gap-2.5 mb-1.5">
-              <span className="w-7 h-7 rounded-lg bg-[#f0f9f8] text-[#7bc4bc] flex items-center justify-center text-xs">
-                <HistoryIcon className="w-4 h-4" />
-              </span>
-              <h4 className="text-xs font-bold text-[#0f172a]">نوبت‌دهی اختصاصی</h4>
-            </div>
-            <p className="text-[11px] text-[#64748b] leading-relaxed">
-              هماهنگی و مشاوره مستقیم در اینستاگرام با بررسی دقیق عکس پوست.
-            </p>
           </div>
         </div>
 
