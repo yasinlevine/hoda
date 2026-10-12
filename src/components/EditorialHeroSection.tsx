@@ -65,26 +65,26 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       {/* ===================================================================== */}
       {/* LAYER 10: MAIN FOREGROUND CONTENT & ADAPTIVE RESPONSIVE LAYOUT */}
       {/* ===================================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full min-w-0 max-w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10 flex-1 my-auto">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 w-full min-w-0 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 flex-1 my-auto">
         
-        {/* Editorial Headline & Action CTAs */}
-        <div className="lg:col-span-7 text-center lg:text-right space-y-4 sm:space-y-6 order-1 lg:order-1 w-full">
+        {/* Editorial Headline & Action CTAs - Brought inwards toward center */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-right space-y-5 sm:space-y-6 order-1 lg:order-1 w-full lg:pr-6 xl:pr-10">
           
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#7bc4bc]/40 text-[11px] sm:text-xs text-[#1d5750] shadow-sm backdrop-blur-md mx-auto lg:mx-0">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-[#7bc4bc]/40 text-xs text-[#1d5750] shadow-xs backdrop-blur-md mx-auto lg:mx-0">
             <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
             <span className="font-medium">{bio.title} · زعفرانیه</span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0f172a] leading-[1.3] sm:leading-[1.25] tracking-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-extrabold text-[#0f172a] leading-[1.35] sm:leading-[1.25] tracking-tight">
             درمان علمی پوست و بازسازی بیولوژیک سد دفاعی
           </h1>
 
-          <p className="text-xs sm:text-sm text-[#475569] leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
+          <p className="text-sm sm:text-base text-[#475569] leading-relaxed max-w-lg mx-auto lg:mx-0 font-normal">
             کلینیک تخصصی و پورتفولیو درماتولوژی هدی پژمان؛ ارائه پروتکل‌های پیشرفته کربوکسی‌تراپی، آکواپیل و جوانسازی بدون سوزن با استانداردهای بین‌المللی CIDESCO سوئیس.
           </p>
 
           {/* Action Buttons: Apple-Style with soft mint teal glow */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-2 w-full max-w-md mx-auto lg:mx-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-2 w-full max-w-md mx-auto lg:mx-0">
             <a
               href="#schedule"
               className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 bg-[#7bc4bc] hover:bg-[#68b5ac] text-white font-bold text-xs sm:text-sm rounded-full transition-all duration-300 shadow-[0_10px_25px_-5px_rgba(123,196,188,0.6)] flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95 animate-glow-pulse"
@@ -95,7 +95,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
 
             <a
               href="#skin-analysis"
-              className="w-full sm:w-auto min-h-[48px] px-5 py-3.5 bg-white/90 hover:bg-white border border-[#7bc4bc]/40 hover:border-[#7bc4bc] text-[#134e48] font-semibold text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm shadow-sm hover:scale-105 active:scale-95"
+              className="w-full sm:w-auto min-h-[48px] px-5 py-3.5 bg-white/90 hover:bg-white border border-[#7bc4bc]/40 hover:border-[#7bc4bc] text-[#134e48] font-semibold text-xs sm:text-sm rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-sm shadow-xs hover:scale-105 active:scale-95"
             >
               <WandSparklesIcon className="w-4 h-4 text-[#7bc4bc]" />
               <span>آنالیز هوشمند پوست</span>
@@ -103,12 +103,12 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           </div>
 
           {/* Mobile Trust Badges */}
-          <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-4 text-[11px] text-[#64748b]">
-            <span className="flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-[#7bc4bc]/25 shadow-xs">
+          <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-4 text-xs text-[#64748b]">
+            <span className="flex items-center gap-1.5 bg-white/85 px-3.5 py-1.5 rounded-full border border-[#7bc4bc]/25 shadow-xs">
               <AwardIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
               بورد CIDESCO سوئیس
             </span>
-            <span className="flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-[#7bc4bc]/25 shadow-xs">
+            <span className="flex items-center gap-1.5 bg-white/85 px-3.5 py-1.5 rounded-full border border-[#7bc4bc]/25 shadow-xs">
               <ShieldCheckIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
               محیط استریل VIP
             </span>
@@ -116,13 +116,13 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
         </div>
 
         {/* Central Artistic Arch Framing Container with High-Res Model Portrait */}
-        <div className="lg:col-span-5 relative flex justify-center items-center order-2 lg:order-2 my-2 sm:my-0 w-full">
+        <div className="relative flex justify-center items-center order-2 lg:order-2 my-2 sm:my-0 w-full">
           
           {/* Luminous Mint Halo Behind Arch */}
           <div className="absolute inset-0 bg-[#7bc4bc]/20 rounded-full blur-3xl scale-95 pointer-events-none"></div>
 
           {/* Artistic Arch Frame with Frosted Glass Border */}
-          <div className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] aspect-[3.2/4] rounded-t-[140px] sm:rounded-t-[170px] lg:rounded-t-[195px] overflow-hidden border-t-2 border-x-2 border-[#7bc4bc]/60 shadow-[0_20px_50px_-15px_rgba(123,196,188,0.4)] group bg-white animate-portrait-float mx-auto">
+          <div className="relative z-10 w-full max-w-[280px] sm:max-w-[330px] lg:max-w-[360px] aspect-[3.2/4] rounded-t-[140px] sm:rounded-t-[165px] lg:rounded-t-[180px] overflow-hidden border-2 border-[#7bc4bc]/50 shadow-[0_20px_50px_-15px_rgba(123,196,188,0.4)] group bg-white animate-portrait-float mx-auto">
             {currentHero.img && (
               <img
                 src={currentHero.img}
@@ -136,12 +136,12 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
             <div className="absolute inset-x-0 bottom-0 h-28 sm:h-32 bg-gradient-to-t from-[#f8faf9] via-[#f8faf9]/80 to-transparent"></div>
 
             {/* Active Tag Overlay at Base of Portrait (Apple Frosted Glass) */}
-            <div className="absolute bottom-3 sm:bottom-4 right-3 left-3 sm:right-4 sm:left-4 p-2.5 sm:p-3 rounded-2xl bg-white/90 backdrop-blur-xl border border-[#7bc4bc]/30 shadow-md flex items-center justify-between">
+            <div className="absolute bottom-3 sm:bottom-4 right-3 left-3 sm:right-4 sm:left-4 p-2.5 sm:p-3 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#7bc4bc]/30 shadow-md flex items-center justify-between">
               <div>
                 <span className="text-[9px] font-mono text-[#1d5750] block uppercase tracking-wider font-semibold">
                   HODA PEZHMAN · DERMA
                 </span>
-                <h3 className="text-[11px] sm:text-xs font-bold text-[#0f172a] truncate max-w-[160px] sm:max-w-none">
+                <h3 className="text-xs font-bold text-[#0f172a] truncate max-w-[160px] sm:max-w-[190px]">
                   {currentHero.title}
                 </h3>
               </div>
@@ -162,7 +162,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       {/* ===================================================================== */}
       {/* LAYER 25: TOUCH-FRIENDLY THUMBNAIL SELECTOR STRIP (APPLE MINIMALIST) */}
       {/* ===================================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full min-w-0 max-w-full mt-6 sm:mt-8 relative z-20">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 w-full min-w-0 mt-6 sm:mt-8 relative z-20">
         <div className="w-full min-w-0 max-w-full flex items-center gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar py-2 snap-x snap-mandatory justify-start sm:justify-center">
           {heroThumbnails.map((thumb) => (
             <button

@@ -1794,12 +1794,12 @@ export default function App() {
       {/* 1. PROFESSIONAL IDENTITY & BIO SECTION */}
       {/* ========================================================================= */}
       <section id="bio" className="py-20 sm:py-24 bg-gradient-to-b from-[#f8faf9] via-[#f0f9f8]/40 to-white border-t border-[#7bc4bc]/20 relative font-vazir overflow-visible">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 overflow-visible">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 overflow-visible">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center overflow-visible">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center overflow-visible">
             
-            <div data-aos="fade-up" className="lg:col-span-5 relative pt-2 -mt-2 overflow-visible w-full max-w-[466.328px]">
-              <div className="relative rounded-3xl bg-white border-2 border-[#7bc4bc]/40 p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between space-y-6 text-center hover:border-[#7bc4bc] hover:shadow-[0_12px_36px_rgb(123,196,188,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-visible min-h-[555px]" style={{ minHeight: '555px' }}>
+            <div data-aos="fade-up" className="lg:col-span-5 relative overflow-visible w-full flex justify-center">
+              <div className="relative rounded-3xl bg-white border-2 border-[#7bc4bc]/40 p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between space-y-6 text-center hover:border-[#7bc4bc] hover:shadow-[0_12px_36px_rgb(123,196,188,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-visible w-full max-w-md">
                 
                 {/* Prestige Seal & Monogram */}
                 <div className="relative mx-auto">
