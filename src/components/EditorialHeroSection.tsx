@@ -38,7 +38,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
   };
 
   return (
-    <section id="top" className="relative min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden pt-6 sm:pt-10 pb-8 sm:pb-12 font-vazir w-full max-w-full min-w-0 bg-gradient-to-b from-[#f3faf9] via-[#f8faf9] to-[#ffffff]">
+    <section id="top" className="relative min-h-[82vh] lg:min-h-[88vh] flex flex-col justify-center overflow-hidden py-10 sm:py-16 lg:py-20 font-vazir w-full max-w-full min-w-0 bg-gradient-to-b from-[#f3faf9] via-[#f8faf9] to-[#ffffff]">
       
       {/* ===================================================================== */}
       {/* LAYER 0: LUMINOUS AMBIENT GLOW & SUBTLE BACKDROP (APPLE LIGHT THEME) */}
@@ -157,40 +157,6 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           </div>
         </div>
 
-      </div>
-
-      {/* ===================================================================== */}
-      {/* LAYER 25: TOUCH-FRIENDLY THUMBNAIL SELECTOR STRIP (APPLE MINIMALIST) */}
-      {/* ===================================================================== */}
-      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 w-full min-w-0 mt-6 sm:mt-8 relative z-20">
-        <div className="w-full min-w-0 max-w-full flex items-center gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar py-2 snap-x snap-mandatory justify-start sm:justify-center">
-          {heroThumbnails.map((thumb) => (
-            <button
-              key={thumb.id}
-              onClick={() => onSelectThumbnail(thumb.id)}
-              className={`flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl border transition-all shrink-0 cursor-pointer text-right snap-start min-h-[50px] sm:min-h-[52px] max-w-[240px] sm:max-w-none ${
-                activeThumbnail === thumb.id
-                  ? 'bg-white border-[#7bc4bc] shadow-md shadow-[#7bc4bc]/20 ring-2 ring-[#7bc4bc]/40'
-                  : 'bg-white/70 border-[#7bc4bc]/20 hover:border-[#7bc4bc]/50 hover:bg-white text-slate-700'
-              }`}
-            >
-              <img
-                src={thumb.img}
-                alt={thumb.title}
-                referrerPolicy="no-referrer"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover shrink-0 border border-[#7bc4bc]/20"
-              />
-              <div className="pr-1 pl-2.5 truncate">
-                <span className="text-xs font-bold text-[#0f172a] block truncate">
-                  {thumb.title}
-                </span>
-                <span className="text-[10px] text-[#64748b] block line-clamp-1">
-                  {thumb.desc}
-                </span>
-              </div>
-            </button>
-          ))}
-        </div>
       </div>
 
     </section>

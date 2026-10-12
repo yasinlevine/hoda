@@ -310,7 +310,7 @@ export default function App() {
   const [serviceFilter, setServiceFilter] = useState<'all' | 'treatment' | 'package'>('all');
 
   // Hero interactive thumbnails
-  const [activeThumbnail, setActiveThumbnail] = useState<number>(1);
+  const [activeThumbnail, setActiveThumbnail] = useState<number>(0);
   const [isZoomModalOpen, setIsZoomModalOpen] = useState<boolean>(false);
 
   // Detail modals
