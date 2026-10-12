@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './index.css';
-import 'aos/dist/aos.css';
 
 interface ErrorBoundaryProps {
   children: ReactNode;

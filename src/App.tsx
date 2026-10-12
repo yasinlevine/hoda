@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import AOS from 'aos';
 
 // Image assets & modular data
 import {
@@ -180,23 +179,24 @@ export default function App() {
     };
     window.addEventListener('hashchange', handleHashChange);
 
-    // Initialize AOS (Animate on Scroll) with gentle, premium ease
+    // Initialize AOS (Animate on Scroll)
     const initAos = () => {
       try {
-        AOS.init({
-          duration: 800,
-          easing: 'ease-out-cubic',
-          once: true,
-          offset: 50,
-          delay: 50,
-        });
-        AOS.refresh();
+        if (typeof (window as any).AOS !== 'undefined') {
+          (window as any).AOS.init({
+            duration: 700,
+            easing: 'ease-out',
+            once: true,
+            offset: 50,
+            disable: 'mobile',
+          });
+        }
       } catch {
         // ignore
       }
     };
     initAos();
-    const timer = setTimeout(initAos, 400);
+    const timer = setTimeout(initAos, 500);
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
@@ -308,10 +308,6 @@ export default function App() {
 
   // Category filter
   const [serviceFilter, setServiceFilter] = useState<'all' | 'treatment' | 'package'>('all');
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [serviceFilter]);
 
   // Hero interactive thumbnails
   const [activeThumbnail, setActiveThumbnail] = useState<number>(0);
@@ -2132,7 +2128,7 @@ export default function App() {
       {/* ========================================================================= */}
       {/* FOOTER: APPLE MINIMALIST */}
       {/* ========================================================================= */}
-      <footer data-aos="fade-up" data-aos-duration="750" className="bg-white border-t border-slate-200 py-16 text-xs text-[#64748b] font-vazir">
+      <footer className="bg-white border-t border-slate-200 py-16 text-xs text-[#64748b] font-vazir">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           
           <div className="space-y-4 text-right">

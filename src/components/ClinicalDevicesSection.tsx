@@ -42,7 +42,7 @@ export const ClinicalDevicesSection: React.FC<ClinicalDevicesSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Section Header */}
-        <div data-aos="fade-up" data-aos-duration="750" className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-16">
           <div className="max-w-2xl text-right">
             <span className="text-[11px] sm:text-xs font-semibold text-[#1d5750] block mb-2">
               NON-INVASIVE MEDICAL TECHNOLOGIES
