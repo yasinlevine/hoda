@@ -2418,8 +2418,8 @@ export default function App() {
 
             <div className="rounded-2xl overflow-hidden mb-4 h-80 sm:h-96 bg-[#f0f9f8]">
               <img
-                src={heroThumbnails[activeThumbnail].img}
-                alt={heroThumbnails[activeThumbnail].title}
+                src={heroThumbnails[activeThumbnail]?.img || heroThumbnails[0]?.img || ''}
+                alt={heroThumbnails[activeThumbnail]?.title || heroThumbnails[0]?.title || ''}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
@@ -2429,10 +2429,10 @@ export default function App() {
               <div>
                 <span className="text-[10px] font-mono text-[#1d5750] uppercase font-semibold">{bio.name} ARCHIVE</span>
                 <h3 className="text-base font-bold text-[#0f172a]">
-                  {heroThumbnails[activeThumbnail].title}
+                  {heroThumbnails[activeThumbnail]?.title || heroThumbnails[0]?.title || ''}
                 </h3>
                 <p className="text-xs text-[#64748b] mt-0.5">
-                  {heroThumbnails[activeThumbnail].desc}
+                  {heroThumbnails[activeThumbnail]?.desc || heroThumbnails[0]?.desc || ''}
                 </p>
               </div>
 

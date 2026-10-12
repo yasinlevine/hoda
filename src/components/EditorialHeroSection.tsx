@@ -30,6 +30,13 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
   onOpenZoom,
   onOpenInstagramModal,
 }) => {
+  const currentHero = (heroThumbnails && heroThumbnails[activeThumbnail]) || (heroThumbnails && heroThumbnails[0]) || {
+    id: 0,
+    title: 'درمان علمی و بازسازی سد دفاعی',
+    desc: 'پرتره بالینی و آرامش پایدار پوست',
+    img: ''
+  };
+
   return (
     <section id="top" className="relative min-h-[85vh] lg:min-h-[92vh] flex flex-col justify-between overflow-hidden pt-6 sm:pt-10 pb-8 sm:pb-12 font-vazir w-full max-w-full min-w-0 bg-gradient-to-b from-[#f3faf9] via-[#f8faf9] to-[#ffffff]">
       
@@ -116,12 +123,14 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
 
           {/* Artistic Arch Frame with Frosted Glass Border */}
           <div className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] aspect-[3.2/4] rounded-t-[140px] sm:rounded-t-[170px] lg:rounded-t-[195px] overflow-hidden border-t-2 border-x-2 border-[#7bc4bc]/60 shadow-[0_20px_50px_-15px_rgba(123,196,188,0.4)] group bg-white animate-portrait-float mx-auto">
-            <img
-              src={heroThumbnails[activeThumbnail].img}
-              alt={heroThumbnails[activeThumbnail].title}
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-            />
+            {currentHero.img && (
+              <img
+                src={currentHero.img}
+                alt={currentHero.title}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              />
+            )}
 
             {/* Seamless Bottom Gradient Fade into Page Background */}
             <div className="absolute inset-x-0 bottom-0 h-28 sm:h-32 bg-gradient-to-t from-[#f8faf9] via-[#f8faf9]/80 to-transparent"></div>
@@ -133,7 +142,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
                   HODA PEZHMAN · DERMA
                 </span>
                 <h3 className="text-[11px] sm:text-xs font-bold text-[#0f172a] truncate max-w-[160px] sm:max-w-none">
-                  {heroThumbnails[activeThumbnail].title}
+                  {currentHero.title}
                 </h3>
               </div>
               <button
