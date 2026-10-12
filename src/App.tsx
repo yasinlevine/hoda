@@ -1655,23 +1655,23 @@ export default function App() {
                 <CertificateIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
                 <span>درباره متخصص</span>
               </a>
-              <a href="#devices" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
-                <MicrochipIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
-                <span>تجهیزات بالینی</span>
-              </a>
-              <a href="#services" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
-                <SpaIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
-                <span>منوی خدمات</span>
+              <a href="#schedule" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
+                <CalendarCheckIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+                <span>سانس‌های هفتگی</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#7bc4bc] animate-pulse"></span>
               </a>
               <a href="#skin-analysis" className="hover:text-[#134e48] transition-colors font-medium text-[#1d5750] flex items-center gap-1.5">
                 <CameraRotateIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
                 <span>آنالیز آنلاین</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#7bc4bc] animate-ping"></span>
               </a>
-              <a href="#schedule" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
-                <CalendarCheckIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
-                <span>سانس‌های هفتگی</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#7bc4bc] animate-pulse"></span>
+              <a href="#services" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
+                <SpaIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+                <span>منوی خدمات</span>
+              </a>
+              <a href="#devices" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
+                <MicrochipIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
+                <span>تجهیزات بالینی</span>
               </a>
               <a href="#reviews" className="hover:text-[#134e48] transition-colors font-medium flex items-center gap-1.5">
                 <StarIcon className="w-3.5 h-3.5 text-[#7bc4bc]" />
@@ -1738,20 +1738,15 @@ export default function App() {
               <DiplomaIcon className="w-4 h-4 text-[#7bc4bc]" />
             </a>
             <a
-              href="#devices"
+              href="#schedule"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] text-xs font-semibold flex items-center justify-between border border-[#7bc4bc]/30"
             >
-              <span>تجهیزات و فناوری‌های بالینی</span>
-              <MicrochipIcon className="w-4 h-4 text-[#7bc4bc]" />
-            </a>
-            <a
-              href="#services"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
-            >
-              <span>منوی خدمات و پکیج‌های تخصصی</span>
-              <SpaIcon className="w-4 h-4 text-[#7bc4bc]" />
+              <div className="flex items-center gap-2">
+                <span>جدول سانس‌های هفتگی</span>
+                <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
+              </div>
+              <CalendarCheckIcon className="w-4 h-4 text-[#7bc4bc]" />
             </a>
             <a
               href="#skin-analysis"
@@ -1765,15 +1760,20 @@ export default function App() {
               <CameraRotateIcon className="w-4 h-4 text-[#7bc4bc]" />
             </a>
             <a
-              href="#schedule"
+              href="#services"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f0f9f8] hover:bg-[#e4f6f3] text-[#134e48] text-xs font-semibold flex items-center justify-between border border-[#7bc4bc]/30"
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
             >
-              <div className="flex items-center gap-2">
-                <span>جدول سانس‌های هفتگی</span>
-                <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
-              </div>
-              <CalendarCheckIcon className="w-4 h-4 text-[#7bc4bc]" />
+              <span>منوی خدمات و پکیج‌های تخصصی</span>
+              <SpaIcon className="w-4 h-4 text-[#7bc4bc]" />
+            </a>
+            <a
+              href="#devices"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#f8faf9] hover:bg-[#f0f9f8] text-[#0f172a] text-xs font-semibold flex items-center justify-between"
+            >
+              <span>تجهیزات و فناوری‌های بالینی</span>
+              <MicrochipIcon className="w-4 h-4 text-[#7bc4bc]" />
             </a>
             <a
               href="#reviews"
@@ -1805,14 +1805,6 @@ export default function App() {
       <InstagramHighlightsSection
         onOpenBookingModal={(title) => handleOpenInstagramBooking(title)}
       />
-
-      {/* ========================================================================= */}
-      {/* CLINICAL DEVICES & TECHNOLOGIES SECTION */}
-      {/* ========================================================================= */}
-      <ClinicalDevicesSection
-        onInquireDevice={(deviceName) => handleOpenInstagramBooking(`مشاوره دستگاه ${deviceName}`)}
-      />
-
 
       {/* ========================================================================= */}
       {/* 1. PROFESSIONAL IDENTITY & BIO SECTION */}
@@ -1952,7 +1944,23 @@ export default function App() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. SPECIALIZED SERVICES & PACKAGES MENU */}
+      {/* 2. WEEKLY AVAILABLE SLOTS & INTERACTIVE SCHEDULE GRID */}
+      {/* ========================================================================= */}
+      <WeeklyScheduleSection
+        schedule={weeklySchedule}
+        onSelectSlot={(slot) => setSelectedSlotForBooking(slot)}
+      />
+
+      {/* ========================================================================= */}
+      {/* 3. SMART SKIN ANALYSIS & ROUTINE CONSULTATION */}
+      {/* ========================================================================= */}
+      <SkinAnalysisSection
+        instagramHandle={bio.instagramHandle}
+        onShowToast={showToast}
+      />
+
+      {/* ========================================================================= */}
+      {/* 4. SPECIALIZED SERVICES & PACKAGES MENU */}
       {/* ========================================================================= */}
       <section id="services" className="py-20 sm:py-24 max-w-7xl mx-auto px-6 sm:px-12 font-vazir">
         <div className="space-y-12">
@@ -2025,19 +2033,10 @@ export default function App() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2.5 SMART SKIN ANALYSIS & ROUTINE CONSULTATION */}
+      {/* 5. CLINICAL DEVICES & TECHNOLOGIES SECTION */}
       {/* ========================================================================= */}
-      <SkinAnalysisSection
-        instagramHandle={bio.instagramHandle}
-        onShowToast={showToast}
-      />
-
-      {/* ========================================================================= */}
-      {/* 3. WEEKLY AVAILABLE SLOTS & INTERACTIVE SCHEDULE GRID */}
-      {/* ========================================================================= */}
-      <WeeklyScheduleSection
-        schedule={weeklySchedule}
-        onSelectSlot={(slot) => setSelectedSlotForBooking(slot)}
+      <ClinicalDevicesSection
+        onInquireDevice={(deviceName) => handleOpenInstagramBooking(`مشاوره دستگاه ${deviceName}`)}
       />
 
       {/* ========================================================================= */}
