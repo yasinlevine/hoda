@@ -104,7 +104,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
       {/* ===================================================================== */}
       {/* MOBILE-FIRST VIEW (< lg): INTUITIVE SINGLE-COLUMN OR SWIPEABLE CARDS */}
       {/* ===================================================================== */}
-      <div className="block lg:hidden space-y-5">
+      <div data-aos="fade-up" data-aos-duration="800" className="block lg:hidden space-y-5">
         
         {/* Mobile Horizontal Day Selector */}
         <div>
@@ -350,7 +350,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
       {/* ===================================================================== */}
       {/* DESKTOP VIEW (>= lg): LUXURY 7-COLUMN MATRIX TABLE */}
       {/* ===================================================================== */}
-      <div className="hidden lg:block space-y-6">
+      <div data-aos="fade-up" data-aos-duration="850" className="hidden lg:block space-y-6">
         
         {/* Day Filter Pills for Desktop */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
@@ -497,7 +497,7 @@ export const WeeklyScheduleSection: React.FC<WeeklyScheduleSectionProps> = ({
       </div>
 
       {/* Information Banner below Matrix */}
-      <div className="mt-8 sm:mt-12 bg-gradient-to-r from-[#f0f9f8] via-[#e8f6f4] to-[#f0f9f8] border border-[#7bc4bc]/30 rounded-3xl p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 shadow-xs text-center sm:text-right">
+      <div data-aos="fade-up" data-aos-duration="800" className="mt-8 sm:mt-12 bg-gradient-to-r from-[#f0f9f8] via-[#e8f6f4] to-[#f0f9f8] border border-[#7bc4bc]/30 rounded-3xl p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 shadow-xs text-center sm:text-right">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div className="w-12 h-12 rounded-2xl bg-white border border-[#7bc4bc]/40 text-[#7bc4bc] flex items-center justify-center text-xl shrink-0 shadow-xs">
             <HistoryIcon className="w-6 h-6" />

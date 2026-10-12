@@ -1,5 +1,5 @@
 import React from 'react';
-import { TherapistBio } from '../types';
+import { TherapistBio, mintCreamSwirl } from '../types';
 import {
   CalendarCheckIcon,
   WandSparklesIcon,
@@ -10,14 +10,14 @@ import {
 
 interface EditorialHeroSectionProps {
   bio: TherapistBio;
-  heroThumbnails: {
+  heroThumbnails?: {
     id: number;
     title: string;
     desc: string;
     img: string;
   }[];
-  activeThumbnail: number;
-  onSelectThumbnail: (index: number) => void;
+  activeThumbnail?: number;
+  onSelectThumbnail?: (index: number) => void;
   onOpenZoom: () => void;
   onOpenInstagramModal: () => void;
 }
@@ -30,11 +30,11 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
   onOpenZoom,
   onOpenInstagramModal,
 }) => {
-  const currentHero = (heroThumbnails && heroThumbnails[activeThumbnail]) || (heroThumbnails && heroThumbnails[0]) || {
-    id: 0,
-    title: 'درمان علمی و بازسازی سد دفاعی',
-    desc: 'پرتره بالینی و آرامش پایدار پوست',
-    img: ''
+  const currentHero = {
+    id: 1,
+    title: 'امولسیون بازسازی سد دفاعی پوست',
+    desc: 'بافت کرمی فیتوتراپی و آرامش پایدار سلولی',
+    img: mintCreamSwirl
   };
 
   return (
@@ -68,7 +68,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 w-full min-w-0 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 flex-1 my-auto">
         
         {/* Editorial Headline & Action CTAs - Placed below image on mobile (order-2) and primary on desktop (lg:order-1) */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-right space-y-5 sm:space-y-6 order-2 lg:order-1 w-full lg:pr-6 xl:pr-10">
+        <div data-aos="fade-up" data-aos-duration="850" className="flex flex-col items-center lg:items-start text-center lg:text-right space-y-5 sm:space-y-6 order-2 lg:order-1 w-full lg:pr-6 xl:pr-10">
           
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-[#7bc4bc]/40 text-xs text-[#1d5750] shadow-xs backdrop-blur-md mx-auto lg:mx-0">
             <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
@@ -116,7 +116,7 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
         </div>
 
         {/* Central Artistic Arch Framing Container with High-Res Model Portrait - Placed on top on mobile (order-1) and secondary on desktop (lg:order-2) */}
-        <div className="relative flex justify-center items-center order-1 lg:order-2 my-2 sm:my-0 w-full">
+        <div data-aos="fade-up" data-aos-duration="900" data-aos-delay="150" className="relative flex justify-center items-center order-1 lg:order-2 my-2 sm:my-0 w-full">
           
           {/* Luminous Mint Halo Behind Arch */}
           <div className="absolute inset-0 bg-[#7bc4bc]/20 rounded-full blur-3xl scale-95 pointer-events-none"></div>

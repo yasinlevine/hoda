@@ -80,11 +80,9 @@
     background-color: #f8faf9;
   }
 
-  /* Prevent AOS from creating horizontal scrollbars on mobile RTL, and guarantee visibility if external CDN is slow/blocked */
+  /* Prevent AOS from creating horizontal scrollbars on mobile RTL while preserving smooth fade animations */
   [data-aos] {
     overflow-x: clip;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
 
   /* Custom scrollbar in luminous pastel mint aesthetic */

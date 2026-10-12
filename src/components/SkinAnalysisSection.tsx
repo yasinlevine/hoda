@@ -176,7 +176,7 @@ export const SkinAnalysisSection: React.FC<SkinAnalysisSectionProps> = ({
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+        <div data-aos="fade-up" data-aos-duration="750" className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
           <span className="text-[11px] sm:text-xs font-semibold text-[#1d5750] bg-[#f0f9f8] border border-[#7bc4bc]/30 px-3.5 py-1 rounded-full uppercase tracking-wider inline-block mb-3">
             CLINICAL DERMA CONSULTATION
           </span>
@@ -189,7 +189,7 @@ export const SkinAnalysisSection: React.FC<SkinAnalysisSectionProps> = ({
         </div>
 
         {/* Main Card Container (Apple Glass) */}
-        <div className="bg-white border border-[#7bc4bc]/30 rounded-3xl p-6 sm:p-10 shadow-[0_12px_40px_rgb(0,0,0,0.05)] relative overflow-hidden">
+        <div data-aos="fade-up" data-aos-duration="850" data-aos-delay="100" className="bg-white border border-[#7bc4bc]/30 rounded-3xl p-6 sm:p-10 shadow-[0_12px_40px_rgb(0,0,0,0.05)] relative overflow-hidden">
           
           {/* Step Progress Indicator (Steps 1 to 4) */}
           {currentStep > 0 && currentStep < 5 && (
