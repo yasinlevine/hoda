@@ -67,8 +67,8 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
       {/* ===================================================================== */}
       <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 w-full min-w-0 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 flex-1 my-auto">
         
-        {/* Editorial Headline & Action CTAs - Brought inwards toward center */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-right space-y-5 sm:space-y-6 order-1 lg:order-1 w-full lg:pr-6 xl:pr-10">
+        {/* Editorial Headline & Action CTAs - Placed below image on mobile (order-2) and primary on desktop (lg:order-1) */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-right space-y-5 sm:space-y-6 order-2 lg:order-1 w-full lg:pr-6 xl:pr-10">
           
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-[#7bc4bc]/40 text-xs text-[#1d5750] shadow-xs backdrop-blur-md mx-auto lg:mx-0">
             <span className="w-2 h-2 rounded-full bg-[#7bc4bc] animate-pulse"></span>
@@ -115,8 +115,8 @@ export const EditorialHeroSection: React.FC<EditorialHeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Central Artistic Arch Framing Container with High-Res Model Portrait */}
-        <div className="relative flex justify-center items-center order-2 lg:order-2 my-2 sm:my-0 w-full">
+        {/* Central Artistic Arch Framing Container with High-Res Model Portrait - Placed on top on mobile (order-1) and secondary on desktop (lg:order-2) */}
+        <div className="relative flex justify-center items-center order-1 lg:order-2 my-2 sm:my-0 w-full">
           
           {/* Luminous Mint Halo Behind Arch */}
           <div className="absolute inset-0 bg-[#7bc4bc]/20 rounded-full blur-3xl scale-95 pointer-events-none"></div>
